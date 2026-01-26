@@ -23,7 +23,9 @@
   "scripts": {
     "build": "tsup && npm run build:css",
     "build:css": "tailwindcss -i ./src/globals.css -o ./dist/globals.css --minify",
-    "dev": "tsup --watch",
+    "dev": "vite",
+    "dev:lib": "tsup --watch",
+    "preview": "vite preview",
     "lint": "eslint src/",
     "typecheck": "tsc --noEmit"
   },
@@ -56,12 +58,16 @@
     "@types/node": "^22.5.5",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.45",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "tailwindcss": "^3.4.11",
     "tailwindcss-animate": "^1.0.7",
     "tsup": "^8.2.4",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.2",
+    "vite": "^5.4.5"
   },
   "keywords": [
     "react",
