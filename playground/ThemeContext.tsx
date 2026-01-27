@@ -88,30 +88,30 @@ export const traversPreset: ThemeConfig = {
   radius: "0.75rem",
 };
 
-// Moderne mørk preset
+// Travers Dark preset - varm, mørk variant
 export const darkPreset: ThemeConfig = {
-  primary: "217 91% 60%",
-  primaryForeground: "222 47% 11%",
-  secondary: "217 33% 17%",
-  secondaryForeground: "210 40% 98%",
-  accent: "262 83% 58%",
-  accentForeground: "210 40% 98%",
+  primary: "45 60% 55%",
+  primaryForeground: "40 10% 8%",
+  secondary: "40 10% 18%",
+  secondaryForeground: "45 20% 95%",
+  accent: "38 50% 40%",
+  accentForeground: "45 20% 95%",
 
-  background: "222 47% 11%",
-  foreground: "210 40% 98%",
-  card: "217 33% 17%",
-  cardForeground: "210 40% 98%",
-  popover: "217 33% 17%",
-  popoverForeground: "210 40% 98%",
+  background: "40 10% 8%",
+  foreground: "45 20% 95%",
+  card: "40 10% 12%",
+  cardForeground: "45 20% 95%",
+  popover: "40 10% 12%",
+  popoverForeground: "45 20% 95%",
 
-  muted: "217 33% 17%",
-  mutedForeground: "215 20% 65%",
-  border: "217 33% 25%",
-  input: "217 33% 25%",
-  ring: "217 91% 60%",
+  muted: "40 10% 18%",
+  mutedForeground: "40 15% 55%",
+  border: "40 15% 20%",
+  input: "40 15% 20%",
+  ring: "45 60% 55%",
 
-  destructive: "0 62% 50%",
-  destructiveForeground: "210 40% 98%",
+  destructive: "0 70% 45%",
+  destructiveForeground: "45 20% 95%",
 
   radius: "0.75rem",
 };
