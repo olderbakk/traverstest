@@ -62,12 +62,12 @@ const defaultTheme: ThemeConfig = {
 
 // Travers preset - profesjonell, moderne look
 export const traversPreset: ThemeConfig = {
-  primary: "217 91% 60%",
-  primaryForeground: "210 40% 98%",
+  primary: "51 53% 10%",
+  primaryForeground: "84 20% 95%",
   secondary: "215 20% 95%",
-  secondaryForeground: "222 47% 11%",
-  accent: "262 83% 58%",
-  accentForeground: "210 40% 98%",
+  secondaryForeground: "0 0% 0%",
+  accent: "60 33% 94%",
+  accentForeground: "0 0% 0%",
 
   background: "0 0% 100%",
   foreground: "222 47% 11%",
@@ -78,12 +78,12 @@ export const traversPreset: ThemeConfig = {
 
   muted: "215 20% 95%",
   mutedForeground: "215 16% 47%",
-  border: "214 32% 91%",
+  border: "42 18% 89%",
   input: "214 32% 91%",
-  ring: "217 91% 60%",
+  ring: "38 66% 23%",
 
-  destructive: "0 84% 60%",
-  destructiveForeground: "210 40% 98%",
+  destructive: "0 100% 95%",
+  destructiveForeground: "353 46% 14%",
 
   radius: "0.75rem",
 };
