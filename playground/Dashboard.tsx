@@ -163,7 +163,7 @@ export function Dashboard() {
                   }}
                   className="flex-1"
                 >
-                  <div className="mr-2 h-4 w-4 rounded-full bg-[hsl(217,91%,60%)]" />
+                  <div className="mr-2 h-4 w-4 rounded-full bg-[hsl(51,53%,10%)]" />
                   Travers Light
                 </Button>
                 <Button
@@ -174,7 +174,7 @@ export function Dashboard() {
                   }}
                   className="flex-1"
                 >
-                  <div className="mr-2 h-4 w-4 rounded-full bg-[hsl(222,47%,11%)]" />
+                  <div className="mr-2 h-4 w-4 rounded-full bg-[hsl(45,60%,55%)]" />
                   Travers Dark
                 </Button>
               </CardContent>
