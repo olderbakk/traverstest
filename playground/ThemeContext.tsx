@@ -32,34 +32,6 @@ export interface ThemeConfig {
   radius: string;
 }
 
-const defaultTheme: ThemeConfig = {
-  // Travers-inspirert fargepalett
-  primary: "221 83% 53%",
-  primaryForeground: "210 40% 98%",
-  secondary: "210 40% 96%",
-  secondaryForeground: "222 47% 11%",
-  accent: "210 40% 96%",
-  accentForeground: "222 47% 11%",
-
-  background: "0 0% 100%",
-  foreground: "222 47% 11%",
-  card: "0 0% 100%",
-  cardForeground: "222 47% 11%",
-  popover: "0 0% 100%",
-  popoverForeground: "222 47% 11%",
-
-  muted: "210 40% 96%",
-  mutedForeground: "215 16% 47%",
-  border: "214 32% 91%",
-  input: "214 32% 91%",
-  ring: "221 83% 53%",
-
-  destructive: "0 84% 60%",
-  destructiveForeground: "210 40% 98%",
-
-  radius: "0.5rem",
-};
-
 // Travers preset - profesjonell, moderne look
 export const traversPreset: ThemeConfig = {
   primary: "51 53% 10%",
