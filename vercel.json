@@ -3,6 +3,18 @@
     {
       "source": "/configurator",
       "destination": "/configurator.html"
+    },
+    {
+      "source": "/pakke-ekspedisjonstur",
+      "destination": "/pakke-ekspedisjonstur.html"
+    },
+    {
+      "source": "/pakke-fokus-paa-vidda",
+      "destination": "/pakke-fokus-paa-vidda.html"
+    },
+    {
+      "source": "/pakke-hotellet-for-dere",
+      "destination": "/pakke-hotellet-for-dere.html"
     }
   ]
 }
