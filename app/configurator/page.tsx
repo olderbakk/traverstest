@@ -20,7 +20,7 @@ export default function Configurator() {
     merknad: ''
   })
 
-  const totalSteps = 9
+  const totalSteps = 10
 
   const updateField = (field: string, value: string | string[]) => {
     setFormData(prev => ({ ...prev, [field]: value }))
@@ -292,7 +292,7 @@ export default function Configurator() {
             {/* Step 9: Merknad */}
             {currentStep === 9 && (
               <div className="step active" data-step="9">
-                <span className="step-indicator">Steg 9 av 9</span>
+                <span className="step-indicator">Steg 9 av 10</span>
                 <h2 className="step-title">Noe mer vi bør vite?</h2>
                 <p className="step-description">Valgfritt</p>
                 <div className="form-group">
@@ -305,7 +305,95 @@ export default function Configurator() {
                 </div>
                 <div className="step-nav">
                   <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
-                  <button className="btn btn-primary" onClick={() => alert('Takk for henvendelsen! Vi tar kontakt snart.')}>
+                  <button className="btn btn-primary" onClick={nextStep}>
+                    Se oppsummering
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Step 10: Summary */}
+            {currentStep === 10 && (
+              <div className="step step-onepager active" data-step="10">
+                <div className="onepager">
+                  <div className="onepager-header">
+                    <img src="/assets/logo/logo.png" alt="Hotel Finse 1222" className="onepager-logo" />
+                  </div>
+
+                  <div className="onepager-hero">
+                    <span className="onepager-label">Deres bedriftsopphold på Finse 1222</span>
+                    <h1 className="onepager-company">{formData.bedriftsnavn || 'Deres bedrift'}</h1>
+                    <p className="onepager-subtitle">{formData.anledning || 'Opphold'} • {formData.antall || 'Antall personer'}</p>
+                  </div>
+
+                  <div className="onepager-itinerary">
+                    <div className="summary-meta">
+                      <div className="meta-item">
+                        <span className="meta-icon">📅</span>
+                        <span className="meta-value">{formData.varighet || '2-3 netter'}</span>
+                      </div>
+                      <div className="meta-item">
+                        <span className="meta-icon">🌄</span>
+                        <span className="meta-value">{formData.tidspunkt || 'Fleksibelt'}</span>
+                      </div>
+                    </div>
+
+                    {formData.aktiviteter.length > 0 && (
+                      <div className="itinerary">
+                        <div className="itinerary-day">
+                          <div className="day-header">
+                            <span className="day-title">Aktiviteter</span>
+                          </div>
+                          <div className="day-timeline">
+                            {formData.aktiviteter.map((aktivitet, index) => (
+                              <div key={index} className="timeline-item">
+                                <span className="timeline-time">✓</span>
+                                <div className="timeline-content">
+                                  <strong>{aktivitet}</strong>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {formData.merknad && (
+                      <div className="itinerary">
+                        <div className="itinerary-day">
+                          <div className="day-header">
+                            <span className="day-title">Tilleggsinformasjon</span>
+                          </div>
+                          <div className="timeline-content">
+                            <p>{formData.merknad}</p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="onepager-footer">
+                    <div className="onepager-meta">
+                      <span>{formData.navn}</span>
+                      <span className="meta-divider">•</span>
+                      <span>{formData.epost}</span>
+                      {formData.telefon && (
+                        <>
+                          <span className="meta-divider">•</span>
+                          <span>{formData.telefon}</span>
+                        </>
+                      )}
+                    </div>
+                    <p className="onepager-brand">HOTEL FINSE 1222</p>
+                  </div>
+                </div>
+
+                <div className="onepager-actions">
+                  <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
+                  <button 
+                    className="btn btn-primary" 
+                    onClick={() => alert('Takk for henvendelsen! Vi tar kontakt snart.')}
+                  >
                     Send forespørsel
                   </button>
                 </div>
