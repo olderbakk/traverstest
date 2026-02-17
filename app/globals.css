@@ -1305,11 +1305,22 @@ a {
 /* Step navigation */
 .step-nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
-    margin-top: var(--space-lg);
-    padding-top: var(--space-md);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: var(--space-xl);
+    position: relative;
+}
+
+.step-nav .btn-outline {
+    position: absolute;
+    left: 0;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+.step-nav .btn-outline:hover {
+    opacity: 1;
 }
 
 /* Contact form */

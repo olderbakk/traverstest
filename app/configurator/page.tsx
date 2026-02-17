@@ -105,12 +105,12 @@ export default function Configurator() {
                       </label>
                     ))}
                   </div>
-                  {formData.anledning && (
-                    <div className="step-nav">
-                      <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
+                  <div className="step-nav">
+                    <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
+                    {formData.anledning && (
                       <button onClick={nextStep} className="btn btn-primary">Neste</button>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
                 <div className="step-image">
                   <img src="/assets/images/finse.jpg" alt="Finse" />
@@ -138,12 +138,12 @@ export default function Configurator() {
                       </label>
                     ))}
                   </div>
-                  {formData.antall && (
-                    <div className="step-nav">
-                      <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
+                  <div className="step-nav">
+                    <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
+                    {formData.antall && (
                       <button onClick={nextStep} className="btn btn-primary">Neste</button>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
                 <div className="step-image">
                   <img src="/assets/images/oss.JPG" alt="Finse team" />
@@ -171,12 +171,12 @@ export default function Configurator() {
                       </label>
                     ))}
                   </div>
-                  {formData.varighet && (
-                    <div className="step-nav">
-                      <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
+                  <div className="step-nav">
+                    <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
+                    {formData.varighet && (
                       <button onClick={nextStep} className="btn btn-primary">Neste</button>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
                 <div className="step-image">
                   <img src="/assets/images/finse1222__182.JPG" alt="Finse rom" />
@@ -236,12 +236,12 @@ export default function Configurator() {
                       </label>
                     ))}
                   </div>
-                  {formData.tidspunkt && (
-                    <div className="step-nav">
-                      <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
+                  <div className="step-nav">
+                    <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
+                    {formData.tidspunkt && (
                       <button onClick={goToSummary} className="btn btn-primary">Neste</button>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
                 <div className="step-image">
                   <img src="/assets/images/tog.png" alt="Tog til Finse" />
@@ -264,12 +264,12 @@ export default function Configurator() {
                       onChange={(e) => updateField('bedriftsnavn', e.target.value)}
                     />
                   </div>
-                  {formData.bedriftsnavn && (
-                    <div className="step-nav">
-                      <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
+                  <div className="step-nav">
+                    <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
+                    {formData.bedriftsnavn && (
                       <button onClick={nextStep} className="btn btn-primary">Neste</button>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
               </div>
             )}
@@ -305,12 +305,12 @@ export default function Configurator() {
                     />
                   </div>
                 </div>
-                {formData.navn && formData.epost && (
-                  <div className="step-nav">
-                    <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
+                <div className="step-nav">
+                  <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
+                  {formData.navn && formData.epost && (
                     <button onClick={nextStep} className="btn btn-primary">Neste</button>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
             )}
 
