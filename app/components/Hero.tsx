@@ -7,7 +7,7 @@ export default function Hero() {
       <div className="hero-content">
         <h1 className="hero-title">
           Steng verden<br />
-          ute på Finse
+          ute på Finse!
         </h1>
         <p className="hero-subtitle">
           Gjør som Prinsen av Wales, Fridtjof Nansen og<br />
