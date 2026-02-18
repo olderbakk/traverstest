@@ -17,7 +17,7 @@
 .konfig-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.35);
 }
 
 /* ── Card ── */
@@ -25,11 +25,11 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 860px;
-  min-height: 400px;
+  max-width: 1060px;
+  height: 640px;
   background: #111111;
   border-radius: 20px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.35);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -43,17 +43,18 @@
   min-height: 400px;
 }
 
-/* ── Progress bar ── */
-.konfig-progress {
+/* ── Progress segments (5 bars, inside left column) ── */
+.konfig-segments {
   display: flex;
-  gap: 3px;
+  gap: 4px;
+  margin-bottom: 20px;
 }
 
 .konfig-seg {
   flex: 1;
-  height: 3px;
+  height: 2px;
   background: rgba(255, 255, 255, 0.2);
-  transition: background 300ms ease;
+  border-radius: 1px;
 }
 
 .konfig-seg.filled {
@@ -64,20 +65,28 @@
 .konfig-body {
   display: flex;
   flex: 1;
+  align-items: stretch;
+  min-height: 0;
 }
 
 .konfig-left {
   flex: 0 0 58%;
-  padding: 44px 48px;
+  position: relative;
+  padding: 36px 44px 80px;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
-  min-height: 0;
 }
 
 .konfig-right {
-  flex: 0 0 42%;
+  flex: 1;
+  display: flex;
+  padding: 16px 16px 16px 0;
+}
+
+.konfig-img-wrap {
+  flex: 1;
   position: relative;
+  border-radius: 12px;
   overflow: hidden;
 }
 
@@ -88,6 +97,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
   opacity: 0;
   transition: opacity 300ms ease;
 }
@@ -100,7 +110,7 @@
 .konfig-step {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
   flex: 1;
 }
 
@@ -125,16 +135,16 @@
 /* ── Typography ── */
 .konfig-indicator {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 11px;
   color: rgba(255, 255, 255, 0.45);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
 }
 
 .konfig-title {
   font-family: var(--font-serif);
-  font-size: 36px;
-  font-weight: 400;
+  font-size: 42px;
+  font-weight: 700;
   color: #fff;
   letter-spacing: -0.02em;
   line-height: 1.15;
@@ -145,7 +155,7 @@
   font-family: var(--font-sans);
   font-size: 14px;
   color: rgba(255, 255, 255, 0.45);
-  margin: 0;
+  margin: -8px 0 -4px;
 }
 
 .konfig-label {
@@ -155,76 +165,108 @@
   color: rgba(255, 255, 255, 0.4);
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  margin-bottom: 8px;
+  margin: 0 0 6px;
 }
 
-/* ── Pill buttons ── */
+.konfig-step > .konfig-label {
+  margin-top: 8px;
+  margin-bottom: -10px;
+}
+
+/* ── Pill buttons (4 columns default) ── */
 .konfig-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
 }
 
-.konfig-pills--grid {
-  display: grid;
+.konfig-pills--3col {
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
 }
 
 .konfig-pill {
-  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 16px;
   font-family: var(--font-sans);
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.85);
-  background: transparent;
-  border: 1.5px solid rgba(255, 255, 255, 0.25);
-  border-radius: 100px;
+  color: rgba(255, 255, 255, 0.5);
+  background: #1B2F33;
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
   cursor: pointer;
   transition: all 150ms ease;
+  text-align: center;
   white-space: nowrap;
 }
 
 .konfig-pill:hover {
-  border-color: rgba(255, 255, 255, 0.5);
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
 .konfig-pill.selected {
-  border-color: #5BB8C4;
-  background: rgba(91, 184, 196, 0.15);
-  color: #5BB8C4;
+  border-color: #70B3C0;
+  background: #70B3C0;
+  color: #ffffff;
 }
 
-/* ── Block buttons (duration, meeting room) ── */
+/* ── Block buttons (3 columns — duration, etc.) ── */
 .konfig-blocks {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 10px;
 }
 
-.konfig-blocks--half {
-  grid-template-columns: repeat(2, 1fr);
-  margin-top: 12px;
-}
-
 .konfig-block {
-  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  max-height: 80px;
+  padding: 0 20px;
   font-family: var(--font-sans);
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.85);
-  background: transparent;
-  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.5);
+  background: #1B2F33;
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   cursor: pointer;
   transition: all 150ms ease;
 }
 
 .konfig-block:hover {
-  border-color: rgba(255, 255, 255, 0.5);
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
 .konfig-block.selected {
+  border-color: #70B3C0;
+  background: #70B3C0;
+  color: #ffffff;
+}
+
+/* ── Møterom toggle ── */
+.konfig-moterom-toggle {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+  background: transparent;
+  border: 1.5px dashed rgba(255, 255, 255, 0.25);
+  border-radius: 100px;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: all 150ms ease;
+  align-self: flex-start;
+}
+
+.konfig-moterom-toggle:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.konfig-moterom-toggle.active {
+  border-style: solid;
   border-color: #5BB8C4;
-  background: rgba(91, 184, 196, 0.15);
   color: #5BB8C4;
 }
 
@@ -238,7 +280,7 @@
   font-family: var(--font-sans);
   font-size: 14px;
   color: #fff;
-  background: rgba(255, 255, 255, 0.07);
+  background: #1B2F33;
   border: 1.5px solid rgba(255, 255, 255, 0.15);
   border-radius: 12px;
   padding: 13px 16px;
@@ -255,8 +297,31 @@
   border-color: #5BB8C4;
 }
 
-input[type="month"].konfig-input {
-  color-scheme: dark;
+.konfig-select {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: #fff;
+  background: #1B2F33;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 13px 16px;
+  transition: border-color 150ms ease;
+  outline: none;
+  width: 100%;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='rgba(255,255,255,0.5)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  cursor: pointer;
+}
+
+.konfig-select:focus {
+  border-color: #5BB8C4;
+}
+
+.konfig-select option {
+  background: #222;
+  color: #fff;
 }
 
 .konfig-textarea {
@@ -271,77 +336,55 @@ input[type="month"].konfig-input {
   gap: 16px;
 }
 
-/* ── Date tip ── */
-.konfig-tip {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-sans);
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.55);
-}
-
-.konfig-tip-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.konfig-tip-dot.good {
-  background: #4CAF50;
-}
-
-.konfig-tip-dot.info {
-  background: #FFA726;
-}
-
 /* ── Divider ── */
 .konfig-divider {
   height: 1px;
   background: rgba(255, 255, 255, 0.1);
 }
 
-/* ── Room cards ── */
+/* ── Room cards (2 columns, side by side) ── */
 .konfig-rooms {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 10px;
 }
 
 .konfig-room {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: flex-start;
-  gap: 8px;
-  padding: 16px;
-  background: transparent;
-  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  gap: 4px;
+  min-height: 56px;
+  max-height: 80px;
+  padding: 14px;
+  background: #1B2F33;
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
   border-radius: 14px;
   cursor: pointer;
   transition: all 150ms ease;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .konfig-room:hover {
-  border-color: rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
 .konfig-room.selected {
-  border-color: #5BB8C4;
-  background: rgba(91, 184, 196, 0.08);
-  color: #5BB8C4;
+  border-color: #70B3C0;
+  background: #70B3C0;
+  color: #ffffff;
 }
 
 .konfig-room-name {
   font-family: var(--font-sans);
   font-size: 14px;
   font-weight: 500;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .konfig-room.selected .konfig-room-name {
-  color: #5BB8C4;
+  color: #ffffff;
 }
 
 .konfig-room-price {
@@ -350,70 +393,19 @@ input[type="month"].konfig-input {
   color: rgba(255, 255, 255, 0.35);
 }
 
-/* ── Toggle (iOS-style) ── */
-.konfig-toggle-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 0;
+.konfig-room.selected .konfig-room-price {
+  color: rgba(255, 255, 255, 0.7);
 }
 
-.konfig-toggle-label {
-  font-family: var(--font-sans);
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.85);
-}
-
-.konfig-toggle {
-  position: relative;
-  display: inline-block;
-  width: 48px;
-  height: 26px;
-  cursor: pointer;
-}
-
-.konfig-toggle input {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.konfig-toggle-track {
-  position: absolute;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 13px;
-  transition: background 200ms ease;
-}
-
-.konfig-toggle-track::after {
-  content: '';
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 20px;
-  height: 20px;
-  background: #fff;
-  border-radius: 50%;
-  transition: transform 200ms ease;
-}
-
-.konfig-toggle input:checked + .konfig-toggle-track {
-  background: #5BB8C4;
-}
-
-.konfig-toggle input:checked + .konfig-toggle-track::after {
-  transform: translateX(22px);
-}
-
-/* ── Navigation buttons ── */
+/* ── Navigation buttons (absolute, pinned to bottom) ── */
 .konfig-nav {
+  position: absolute;
+  bottom: 24px;
+  left: 44px;
+  right: 44px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: auto;
-  padding-top: 16px;
 }
 
 .konfig-back {
@@ -435,17 +427,17 @@ input[type="month"].konfig-input {
   font-family: var(--font-sans);
   font-size: 14px;
   font-weight: 500;
-  color: #fff;
-  background: #5BB8C4;
+  color: #1B2F33;
+  background: #ffffff;
   border: none;
-  border-radius: 100px;
-  padding: 11px 28px;
+  border-radius: 8px;
+  padding: 10px 28px;
   cursor: pointer;
   transition: background 150ms ease;
 }
 
 .konfig-next:hover {
-  background: #4da8b4;
+  background: #e8e8e8;
 }
 
 /* ── Submit button (step 5) ── */
@@ -457,7 +449,7 @@ input[type="month"].konfig-input {
   color: #fff;
   background: #5BB8C4;
   border: none;
-  border-radius: 100px;
+  border-radius: 12px;
   padding: 14px 28px;
   cursor: pointer;
   transition: background 150ms ease;
@@ -485,6 +477,7 @@ input[type="month"].konfig-input {
   position: absolute;
   inset: 0;
   background: #0d0d0d;
+  border-radius: 12px;
   padding: 44px 32px;
   display: flex;
   flex-direction: column;
@@ -543,32 +536,25 @@ input[type="month"].konfig-input {
   line-height: 1.5;
 }
 
-/* ── Success state ── */
-.konfig-success {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 60px 40px;
-  text-align: center;
-  gap: 24px;
+/* ── Responsive: tablet ── */
+@media (max-width: 1100px) {
+  .konfig-card {
+    max-width: 92vw;
+  }
 }
 
-.konfig-success-title {
-  font-family: var(--font-serif);
-  font-size: 28px;
-  font-weight: 400;
-  color: #fff;
-  letter-spacing: -0.02em;
-  line-height: 1.3;
-  margin: 0;
+@media (max-width: 1024px) {
+  .konfig-card {
+    height: 580px;
+  }
 }
 
-/* ── Responsive: below 768px ── */
+/* ── Responsive: mobile ── */
 @media (max-width: 768px) {
   .konfig-card {
-    max-width: 100%;
-    margin: 0 24px;
+    max-width: calc(100% - 32px);
+    height: auto;
+    margin: 16px;
     border-radius: 16px;
   }
 
@@ -578,54 +564,76 @@ input[type="month"].konfig-input {
 
   .konfig-left {
     flex: 1;
-    padding: 32px 24px;
-  }
-
-  .konfig-body {
-    min-height: 360px;
+    padding: 24px 24px 80px;
   }
 
   .konfig-title {
     font-size: 28px;
   }
 
-  .konfig-pills--grid {
-    grid-template-columns: repeat(2, 1fr);
+  .konfig-pills {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .konfig-pills--3col {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .konfig-pill {
+    height: auto;
+    min-height: 44px;
   }
 
   .konfig-blocks {
     grid-template-columns: 1fr;
   }
 
-  .konfig-blocks--half {
-    grid-template-columns: repeat(2, 1fr);
+  .konfig-block {
+    min-height: 52px;
+    max-height: none;
   }
 
   .konfig-rooms {
     grid-template-columns: 1fr;
   }
 
+  .konfig-room {
+    min-height: 52px;
+    max-height: none;
+  }
+
   .konfig-form-grid {
     grid-template-columns: 1fr;
+  }
+
+  .konfig-nav {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    right: 24px;
+  }
+
+  .konfig-next {
+    width: auto;
+  }
+
+  .konfig-moterom-toggle {
+    align-self: stretch;
+    text-align: center;
   }
 }
 
 @media (max-width: 480px) {
-  .konfig-card {
-    margin: 0 16px;
-    border-radius: 12px;
-  }
-
   .konfig-left {
-    padding: 24px 20px;
+    padding: 20px 16px 80px;
   }
 
-  .konfig-pills--grid {
-    grid-template-columns: 1fr 1fr;
+  .konfig-nav {
+    left: 16px;
+    right: 16px;
   }
 
   .konfig-pill {
     font-size: 13px;
-    padding: 8px 14px;
   }
 }

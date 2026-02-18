@@ -1,0 +1,243 @@
+/* ========================================
+   Reise – "Din reise" editorial page
+   ======================================== */
+
+.reise-page {
+  min-height: 100vh;
+  background: #0f0f0f;
+  color: #fff;
+}
+
+/* ── Hero ── */
+.reise-hero {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+}
+
+.reise-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reise-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(15, 15, 15, 0.6) 70%,
+    #0f0f0f 100%
+  );
+}
+
+.reise-hero-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reise-logo {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+/* ── Content ── */
+.reise-content {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 40px 100px;
+}
+
+.reise-header {
+  margin-bottom: 64px;
+}
+
+.reise-heading {
+  font-family: var(--font-serif);
+  font-size: 48px;
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.reise-bedrift {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 16px 0 0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ── Details grid ── */
+.reise-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.reise-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 32px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.reise-detail:nth-child(odd) {
+  padding-right: 40px;
+}
+
+.reise-detail:nth-child(even) {
+  padding-left: 40px;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.reise-detail-label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.reise-detail-value {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.3;
+}
+
+/* ── Merknad ── */
+.reise-merknad {
+  padding: 32px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.reise-merknad-text {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+  margin: 8px 0 0;
+}
+
+/* ── Actions ── */
+.reise-actions {
+  margin-top: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.reise-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  background: #5BB8C4;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 40px;
+  cursor: pointer;
+  transition: background 150ms ease;
+  text-decoration: none;
+  min-width: 220px;
+}
+
+.reise-cta:hover {
+  background: #4da8b4;
+}
+
+.reise-footer-note {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.3);
+  margin: 0;
+}
+
+/* ── Empty state ── */
+.reise-empty {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+  gap: 16px;
+}
+
+.reise-empty-title {
+  font-family: var(--font-serif);
+  font-size: 32px;
+  font-weight: 400;
+  color: #fff;
+  margin: 0;
+}
+
+.reise-empty-text {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .reise-hero {
+    height: 260px;
+  }
+
+  .reise-content {
+    padding: 0 24px 80px;
+  }
+
+  .reise-heading {
+    font-size: 32px;
+  }
+
+  .reise-header {
+    margin-bottom: 40px;
+  }
+
+  .reise-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reise-detail:nth-child(odd),
+  .reise-detail:nth-child(even) {
+    padding-left: 0;
+    padding-right: 0;
+    border-left: none;
+  }
+
+  .reise-detail-value {
+    font-size: 18px;
+  }
+
+  .reise-cta {
+    width: 100%;
+  }
+
+  .reise-actions {
+    margin-top: 40px;
+  }
+}
