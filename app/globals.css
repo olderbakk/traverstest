@@ -1309,6 +1309,7 @@ a {
     align-items: center;
     margin-top: var(--space-xl);
     position: relative;
+    min-height: 48px;
 }
 
 .step-nav .btn-outline {
@@ -1321,6 +1322,17 @@ a {
 
 .step-nav .btn-outline:hover {
     opacity: 1;
+}
+
+.step-nav .btn-primary {
+    background-color: var(--color-pill);
+    color: var(--color-bg-dark);
+    border: 1px solid var(--color-pill-border);
+}
+
+.step-nav .btn-primary:hover {
+    background-color: var(--color-cream);
+    border-color: var(--color-cream);
 }
 
 /* Contact form */
