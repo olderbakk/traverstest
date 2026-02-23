@@ -16,10 +16,10 @@ export default function Header({ variant = 'light', showBackButton = false }: He
         )}
       </nav>
       <Link href="/" className="logo">
-        <img src="/assets/logo/logo.png" alt="Hotel Finse 1222" className="logo-img" />
+        <img src="/assets/logo/image.png" alt="Hotel Finse 1222" className="logo-img" />
       </Link>
       <nav className="nav nav-right">
-        <Link href="/configurator" className="btn-planlegg">Planlegg opphold</Link>
+        <a href="#faq" className="btn-planlegg">Ofte stilte spørsmål</a>
       </nav>
     </header>
   )
