@@ -84,6 +84,9 @@ a {
     justify-content: space-between;
     align-items: center;
     padding: var(--space-xl) var(--space-xl) var(--space-lg);
+    background: rgba(245, 242, 232, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .nav-left {
@@ -479,9 +482,7 @@ a {
 
 .package-link::before,
 .package-link::after {
-    content: '✦';
-    font-size: 0.6rem;
-    opacity: 0.7;
+    display: none;
 }
 
 .package-card:hover .package-link {
@@ -834,9 +835,6 @@ a {
     padding: 0 0 var(--space-sm);
 }
 
-.testimonial-track:hover {
-    animation-play-state: paused;
-}
 
 @keyframes marquee {
     0% { transform: translateX(0); }

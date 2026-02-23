@@ -5,10 +5,11 @@ export default function PackagesSection() {
     {
       href: '/pakke-fokus-paa-vidda',
       image: '/assets/images/R1-04554-0028.jpg',
+      imagePosition: 'center 60%',
       tag: 'Ledergrupper',
       title: 'Fokus på vidda',
       description: 'For team som trenger tid til de viktige samtalene – langt unna alt som maser.',
-      linkText: 'Mer info'
+      linkText: 'Utforsk'
     },
     {
       href: '/pakke-ekspedisjonstur',
@@ -16,7 +17,7 @@ export default function PackagesSection() {
       tag: 'Eventyr',
       title: 'Ekspedisjonstur',
       description: 'Dager fulle av turer, ski eller Rallarvegen – og kveldene foran peisen.',
-      linkText: 'Mer info'
+      linkText: 'Utforsk'
     },
     {
       href: '/pakke-hotellet-for-dere',
@@ -24,7 +25,7 @@ export default function PackagesSection() {
       tag: 'Opp til 110 gjester',
       title: 'Hotellet for dere selv',
       description: 'For jubileer, kickoffs og feiringer der dere vil ha Finse 1222 for dere selv.',
-      linkText: 'Mer info'
+      linkText: 'Utforsk'
     },
     {
       href: '/configurator',
@@ -40,7 +41,7 @@ export default function PackagesSection() {
   return (
     <section className="content-section section-packages">
       <div className="container">
-        <h2 className="packages-title">Finn pakken som passer deres opphold</h2>
+        <h2 className="packages-title">Utforsk våre bedriftspakker</h2>
         <div className="packages-cta">
           <a href="#pakker" className="btn btn-tertiary">Utforsk pakker</a>
           <Link href="/configurator" className="btn btn-outline-light">Skreddersy oppholdet</Link>
@@ -53,7 +54,7 @@ export default function PackagesSection() {
               className={`package-card ${pkg.isCustom ? 'package-card-custom' : ''}`}
             >
               <div className="package-image">
-                <img src={pkg.image} alt={pkg.title} />
+                <img src={pkg.image} alt={pkg.title} style={pkg.imagePosition ? { objectPosition: pkg.imagePosition } : undefined} />
                 <div className="package-gradient"></div>
               </div>
               <span className="package-tag">{pkg.tag}</span>
