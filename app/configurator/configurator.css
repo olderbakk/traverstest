@@ -1123,6 +1123,7 @@ div + .konfig-flex-label {
   text-align: left;
   padding: 10px;
   gap: 16px;
+  height: 148px;
   transition: border-color 150ms ease, background 150ms ease;
 }
 
