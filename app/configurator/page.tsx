@@ -9,7 +9,7 @@ const STEP_IMAGES = [
   '/assets/images/finse1222__182.JPG',
   '/assets/images/finse1222__242.JPG',
   '/assets/images/oss.JPG',
-  '/assets/images/oss.JPG',
+  '/assets/images/Finseskilt.jpg',
 ]
 
 const DAG_AKTIVITETER = [
