@@ -502,11 +502,20 @@ export default function Configurator() {
                           className={`konfig-act-card ${selected ? 'selected' : ''}`}
                           onClick={() => toggleAktivitet(navn, type)}
                         >
-                          <img src={bilde} alt={navn} className="konfig-act-card-img" />
+                          <div className="konfig-act-card-img-wrap">
+                            <img src={bilde} alt={navn} className="konfig-act-card-img" />
+                          </div>
                           <div className="konfig-act-card-body">
                             <p className="konfig-act-card-title">{navn}</p>
                             <p className="konfig-act-card-desc">{beskrivelse}</p>
                           </div>
+                          {selected && (
+                            <div className="konfig-act-card-check">
+                              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                <path d="M2.5 7L5.5 10L11.5 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                              </svg>
+                            </div>
+                          )}
                         </button>
                       )
                     })}

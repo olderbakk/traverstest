@@ -1114,13 +1114,15 @@ div + .konfig-flex-label {
   display: flex;
   flex-direction: row;
   flex-shrink: 0;
+  position: relative;
   background: #F3EEE3;
   border: 1.5px solid transparent;
-  border-radius: 14px;
+  border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
   text-align: left;
-  height: 130px;
+  padding: 10px;
+  gap: 16px;
   transition: border-color 150ms ease, background 150ms ease;
 }
 
@@ -1129,20 +1131,28 @@ div + .konfig-flex-label {
 }
 
 .konfig-act-card.selected {
-  border-color: #775D40;
+  border-color: #322A20;
   background: #EDE5D8;
 }
 
+.konfig-act-card-img-wrap {
+  flex: 0 0 160px;
+  width: 160px;
+  border-radius: 10px;
+  overflow: hidden;
+  align-self: stretch;
+}
+
 .konfig-act-card-img {
-  flex: 0 0 140px;
-  width: 140px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   display: block;
 }
 
 .konfig-act-card-body {
   flex: 1;
-  padding: 16px 18px;
+  padding: 6px 0;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -1152,7 +1162,7 @@ div + .konfig-flex-label {
 
 .konfig-act-card-title {
   font-family: 'Crimson Pro', Georgia, serif;
-  font-size: 19px;
+  font-size: 20px;
   font-weight: 500;
   color: #322A20;
   margin: 0;
@@ -1164,11 +1174,25 @@ div + .konfig-flex-label {
   font-size: 12px;
   color: rgba(0,0,0,0.45);
   margin: 0;
-  line-height: 1.55;
+  line-height: 1.6;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.konfig-act-card-check {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #322A20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 /* ── Responsive: tablet ── */
