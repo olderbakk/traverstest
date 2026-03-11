@@ -1088,12 +1088,12 @@ div + .konfig-flex-label {
   cursor: not-allowed;
 }
 
-/* ── Activity card grid (step 5) ── */
+/* ── Activity card list (step 5) ── */
 .konfig-activity-grid {
   flex: 1;
   overflow-y: auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
   min-height: 0;
   padding-right: 4px;
@@ -1113,12 +1113,14 @@ div + .konfig-flex-label {
 .konfig-act-card {
   display: flex;
   flex-direction: row;
+  flex-shrink: 0;
   background: #F3EEE3;
   border: 1.5px solid transparent;
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
   cursor: pointer;
   text-align: left;
+  height: 130px;
   transition: border-color 150ms ease, background 150ms ease;
 }
 
@@ -1132,25 +1134,25 @@ div + .konfig-flex-label {
 }
 
 .konfig-act-card-img {
-  flex: 0 0 90px;
-  width: 90px;
+  flex: 0 0 140px;
+  width: 140px;
   object-fit: cover;
   display: block;
-  align-self: stretch;
 }
 
 .konfig-act-card-body {
   flex: 1;
-  padding: 12px 10px;
+  padding: 16px 18px;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
   min-width: 0;
+  justify-content: center;
 }
 
 .konfig-act-card-title {
   font-family: 'Crimson Pro', Georgia, serif;
-  font-size: 16px;
+  font-size: 19px;
   font-weight: 500;
   color: #322A20;
   margin: 0;
@@ -1159,10 +1161,14 @@ div + .konfig-flex-label {
 
 .konfig-act-card-desc {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   color: rgba(0,0,0,0.45);
   margin: 0;
-  line-height: 1.5;
+  line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* ── Responsive: tablet ── */
