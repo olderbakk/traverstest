@@ -13,16 +13,16 @@ const STEP_IMAGES = [
 ]
 
 const DAG_AKTIVITETER = [
-  { navn: 'Guidet tur på vidda',    bilde: '/assets/images/Finse_pakker00002.jpg', beskrivelse: 'Utforsk Hardangervidda med lokal guide. Hotellet inkluderer guide, kart og termos-lunsj underveis. En opplevelse som gir perspektiv – på naturen og på hverandre.' },
-  { navn: 'Skitur',                 bilde: '/assets/images/Finse_pakker00003.jpg', beskrivelse: 'Løypene starter rett utenfor døren. Hotellet låner ut ski og staver, og pakker sekken for dere om dere ønsker det. Ingen logistikk – bare frisk luft fra første steg.' },
+  { navn: 'Guidet tur på vidda',    bilde: '/assets/images/Finse_pakker00007.jpg', beskrivelse: 'Utforsk Hardangervidda med lokal guide. Hotellet inkluderer guide, kart og termos-lunsj underveis. En opplevelse som gir perspektiv – på naturen og på hverandre.' },
+  { navn: 'Skitur',                 bilde: '/assets/images/Finse_pakker00002.jpg', beskrivelse: 'Løypene starter rett utenfor døren. Hotellet låner ut ski og staver, og pakker sekken for dere om dere ønsker det. Ingen logistikk – bare frisk luft fra første steg.' },
   { navn: 'Sykling på Rallarvegen', bilde: '/assets/images/Finse_pakker00004.jpg', beskrivelse: 'En ikonisk rute med dramatisk fjelllandskap. Hotellet ordner sykkel, hjelm og ruteplanlegging tilpasset gruppen. Mestring og snakkestoff garantert.' },
   { navn: 'Breføring',              bilde: '/assets/images/Finse_pakker00005.jpg', beskrivelse: 'Gå på Hardangerjøkulen med erfarne guidere. Hotellet inkluderer guide, brodder og sikringsutstyr. En aktivitet som løfter turen fra hyggelig til uforglemmelig.' },
 ]
 
 const KVELD_AKTIVITETER = [
-  { navn: 'Astrokveld',    bilde: '/assets/images/Finse_pakker00007.jpg', beskrivelse: 'Stjernehimmel langt fra bylys. Hotellet serverer varm drikke og stiller med kikkert og stjernekart. Et naturlig rom for gode samtaler.' },
-  { navn: 'Historiestund', bilde: '/assets/images/Finse_pakker00009.jpg', beskrivelse: 'Finses historie – fra polfarere til filminnspillinger – fortalt rundt bålet. Hotellet arrangerer guidet fortelling med noe varmt å drikke. Gir reisen et felles ankerpunkt.' },
-  { navn: 'Vinsmaking',    bilde: '/assets/images/Finse_pakker00008.jpg', beskrivelse: 'Kurerte viner med historiene bak glasset, ledet av hotellets personale. Inkluderer smaksprøver og småretter. En avslappet avslutning på dagen.' },
+  { navn: 'Astrokveld',    bilde: '/assets/images/Finse_configurator_background.jpg', beskrivelse: 'Stjernehimmel langt fra bylys. Hotellet serverer varm drikke og stiller med kikkert og stjernekart. Et naturlig rom for gode samtaler.' },
+  { navn: 'Historiestund', bilde: '/assets/images/Finse_pakker00010.jpg',             beskrivelse: 'Finses historie – fra polfarere til filminnspillinger – fortalt rundt bålet. Hotellet arrangerer guidet fortelling med noe varmt å drikke. Gir reisen et felles ankerpunkt.' },
+  { navn: 'Vinsmaking',    bilde: '/assets/images/mat_finse.jpg',                     beskrivelse: 'Kurerte viner med historiene bak glasset, ledet av hotellets personale. Inkluderer smaksprøver og småretter. En avslappet avslutning på dagen.' },
 ]
 
 const AKTIVITETER = [

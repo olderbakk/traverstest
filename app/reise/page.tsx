@@ -4,13 +4,13 @@ import { useEffect, useState } from 'react'
 import './reise.css'
 
 const ACTIVITY_IMAGES: Record<string, string> = {
-  'Guidet tur på vidda':    '/assets/images/Finse_pakker00002.jpg',
-  'Skitur':                 '/assets/images/Finse_pakker00003.jpg',
+  'Guidet tur på vidda':    '/assets/images/Finse_pakker00007.jpg',
+  'Skitur':                 '/assets/images/Finse_pakker00002.jpg',
   'Sykling på Rallarvegen': '/assets/images/Finse_pakker00004.jpg',
   'Breføring':              '/assets/images/Finse_pakker00005.jpg',
-  'Astrokveld':             '/assets/images/Finse_pakker00007.jpg',
-  'Vinsmaking':             '/assets/images/Finse_pakker00008.jpg',
-  'Historiestund':          '/assets/images/Finse_pakker00009.jpg',
+  'Astrokveld':             '/assets/images/Finse_configurator_background.jpg',
+  'Vinsmaking':             '/assets/images/mat_finse.jpg',
+  'Historiestund':          '/assets/images/Finse_pakker00010.jpg',
 }
 
 interface TripData {
