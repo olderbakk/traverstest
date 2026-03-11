@@ -214,10 +214,6 @@ export default function Configurator() {
                       autoFocus
                     />
                   )}
-                  <div className="konfig-nav">
-                    <span />
-                    {step1Valid && <button className="konfig-next" onClick={next}>Neste</button>}
-                  </div>
                 </>
               )}
 
@@ -315,7 +311,7 @@ export default function Configurator() {
                     <>
                       <p className="konfig-flex-label">Hvor lenge ønsker dere å bli?</p>
                       <div className="konfig-duration-row">
-                        {['1 natt', '2-3 netter', '3-4 netter', 'En uke', 'Over en uke'].map(opt => (
+                        {['1 natt', '2-3 netter', '3-4 netter', 'Midtuke', 'Helg'].map(opt => (
                           <button
                             key={opt}
                             className={`konfig-duration-btn ${form.fleksibeltNetter === opt ? 'selected' : ''}`}
@@ -367,10 +363,6 @@ export default function Configurator() {
                     </>
                   )}
 
-                  <div className="konfig-nav">
-                    <button className="konfig-back" onClick={prev}>Tilbake</button>
-                    {step2Valid && <button className="konfig-next" onClick={next}>Neste</button>}
-                  </div>
                 </>
               )}
 
@@ -399,10 +391,6 @@ export default function Configurator() {
                     {form.moterom ? '✓ Møterom lagt til' : '+ Legg til møterom'}
                   </button>
 
-                  <div className="konfig-nav">
-                    <button className="konfig-back" onClick={prev}>Tilbake</button>
-                    {form.antall && <button className="konfig-next" onClick={next}>Neste</button>}
-                  </div>
                 </>
               )}
 
@@ -415,38 +403,31 @@ export default function Configurator() {
                       className={`konfig-room ${form.romtype === 'Enkeltrom' ? 'selected' : ''}`}
                       onClick={() => set('romtype', 'Enkeltrom')}
                     >
-                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M3 21V7a2 2 0 012-2h14a2 2 0 012 2v14" /><path d="M3 15h18" /><rect x="7" y="9" width="4" height="6" rx="1" />
                       </svg>
                       <span className="konfig-room-name">Enkeltrom</span>
-                      <span className="konfig-room-price">Fra kr 1 990 / natt</span>
                     </button>
                     <button
                       className={`konfig-room ${form.romtype === 'Dobbeltrom' ? 'selected' : ''}`}
                       onClick={() => set('romtype', 'Dobbeltrom')}
                     >
-                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M3 21V7a2 2 0 012-2h14a2 2 0 012 2v14" /><path d="M3 15h18" /><rect x="5" y="9" width="4" height="6" rx="1" /><rect x="11" y="9" width="4" height="6" rx="1" />
                       </svg>
                       <span className="konfig-room-name">Dobbeltrom</span>
-                      <span className="konfig-room-price">Fra kr 1 490 / pers / natt</span>
                     </button>
                     <button
-                      className={`konfig-room ${form.romtype === 'Begge deler' ? 'selected' : ''}`}
-                      onClick={() => set('romtype', 'Begge deler')}
+                      className={`konfig-room ${form.romtype === 'Enkeltrom og dobbeltrom' ? 'selected' : ''}`}
+                      onClick={() => set('romtype', 'Enkeltrom og dobbeltrom')}
                     >
-                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M3 21V7a2 2 0 012-2h14a2 2 0 012 2v14" /><path d="M3 15h18" /><rect x="4" y="9" width="3" height="6" rx="1" /><rect x="10" y="9" width="3" height="6" rx="1" /><rect x="16" y="9" width="3" height="6" rx="1" />
                       </svg>
-                      <span className="konfig-room-name">Begge deler</span>
-                      <span className="konfig-room-price">Vi finner den beste løsningen</span>
+                      <span className="konfig-room-name">Enkeltrom og dobbeltrom</span>
                     </button>
                   </div>
 
-                  <div className="konfig-nav">
-                    <button className="konfig-back" onClick={prev}>Tilbake</button>
-                    {form.romtype && <button className="konfig-next" onClick={next}>Neste</button>}
-                  </div>
                 </>
               )}
 
@@ -483,10 +464,6 @@ export default function Configurator() {
                     ))}
                   </div>
 
-                  <div className="konfig-nav">
-                    <button className="konfig-back" onClick={prev}>Tilbake</button>
-                    <button className="konfig-next" onClick={next}>Neste</button>
-                  </div>
                 </>
               )}
 
@@ -519,11 +496,21 @@ export default function Configurator() {
                     Send forespørsel
                   </button>
                   <p className="konfig-hint">Vi svarer innen én arbeidsdag · Ingen binding</p>
-                  <div className="konfig-nav">
-                    <button className="konfig-back" onClick={prev}>Tilbake</button>
-                  </div>
                 </>
               )}
+            </div>
+
+            {/* ── Shared nav — outside animated step so it never jumps ── */}
+            <div className="konfig-nav">
+              {step > 1
+                ? <button className="konfig-back" onClick={prev}>Tilbake</button>
+                : <span />
+              }
+              {step === 1 && step1Valid && <button className="konfig-next" onClick={next}>Neste</button>}
+              {step === 2 && step2Valid && <button className="konfig-next" onClick={next}>Neste</button>}
+              {step === 3 && form.antall && <button className="konfig-next" onClick={next}>Neste</button>}
+              {step === 4 && form.romtype && <button className="konfig-next" onClick={next}>Neste</button>}
+              {step === 5 && <button className="konfig-next" onClick={next}>Neste</button>}
             </div>
           </div>
 

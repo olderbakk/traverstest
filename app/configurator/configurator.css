@@ -173,7 +173,12 @@
   color: #1C1C1C;
   letter-spacing: -0.01em;
   line-height: 1.15;
-  margin: 0;
+  margin: 0 0 18px;
+}
+
+/* No extra spacing below title on the date picker step */
+.konfig-step:has(.konfig-mode-toggle) .konfig-title {
+  margin-bottom: 0;
 }
 
 .konfig-subtitle {
@@ -213,8 +218,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 44px;
-  padding: 0 16px;
+  padding: 16px 16px;
   font-family: var(--font-sans);
   font-size: 13px;
   color: rgba(0, 0, 0, 0.55);
@@ -369,26 +373,25 @@
 
 /* ── Room cards ── */
 .konfig-rooms {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
 }
 
 .konfig-room {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 4px;
-  min-height: 90px;
-  max-height: 110px;
-  padding: 14px;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 26px 20px;
   background: #F3EEE3;
   border: 1.5px solid transparent;
-  border-radius: 14px;
+  border-radius: 12px;
   cursor: pointer;
   transition: all 150ms ease;
-  color: rgba(0, 0, 0, 0.45);
+  color: rgba(0, 0, 0, 0.4);
+  text-align: left;
 }
 
 .konfig-room:hover {
@@ -409,17 +412,7 @@
 }
 
 .konfig-room.selected .konfig-room-name {
-  color: #1C1C1C;
-}
-
-.konfig-room-price {
-  font-family: var(--font-sans);
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.35);
-}
-
-.konfig-room.selected .konfig-room-price {
-  color: rgba(0, 0, 0, 0.45);
+  color: #322A20;
 }
 
 /* ── Navigation buttons ── */
@@ -808,8 +801,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 52px;
-  padding: 0 20px;
+  padding: 18px 20px;
   font-family: var(--font-sans);
   font-size: 13px;
   color: rgba(0, 0, 0, 0.55);
@@ -963,7 +955,7 @@
   align-items: center;
   gap: 12px;
   width: 100%;
-  padding: 6px 10px 6px 6px;
+  padding: 10px 12px 10px 10px;
   background: #F3EEE3;
   border: 1.5px solid transparent;
   border-radius: 10px;
@@ -1079,13 +1071,8 @@
     max-height: none;
   }
 
-  .konfig-rooms {
-    grid-template-columns: 1fr;
-  }
-
   .konfig-room {
-    min-height: 52px;
-    max-height: none;
+    padding: 16px;
   }
 
   .konfig-form-grid {
