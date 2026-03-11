@@ -58,7 +58,7 @@ export default function ReisePage() {
         <div className="reise-empty">
           <h1 className="reise-empty-title">Reisen ble ikke funnet</h1>
           <p className="reise-empty-text">Lenken kan ha utløpt eller data er slettet fra nettleseren.</p>
-          <a href="/configurator" className="reise-btn reise-btn--primary">Start ny konfigurasjon</a>
+          <a href="/configurator" className="reise-btn reise-btn--dark">Start ny konfigurasjon</a>
         </div>
       </div>
     )
@@ -67,12 +67,10 @@ export default function ReisePage() {
   const aktiviteter = [...(data.dagAktiviteter || []), ...(data.kveldAktiviteter || [])].filter(Boolean)
 
   const details: { label: string; value: string }[] = [
-    { label: 'Anledning',   value: data.anledning },
-    { label: 'Dato',        value: data.dato },
-    { label: 'Varighet',    value: data.varighet },
-    { label: 'Gjester',     value: data.antall ? `${data.antall} pers.` : '' },
-    { label: 'Romtype',     value: data.romtype },
-    { label: 'Møterom',     value: data.moterom ? (data.moteromVarighet || 'Ja') : '' },
+    { label: 'Anledning',  value: data.anledning },
+    { label: 'Dato',       value: data.dato },
+    { label: 'Deltakere',  value: data.antall },
+    { label: 'Møterom',    value: data.moterom ? (data.moteromVarighet || 'Inkludert') : '' },
   ].filter(d => d.value)
 
   return (
@@ -88,66 +86,67 @@ export default function ReisePage() {
           </a>
         </nav>
         <div className="reise-hero-body">
-          <p className="reise-hero-eyebrow">Forespørsel bekreftet</p>
+          <p className="reise-hero-eyebrow">Forespørsel mottatt</p>
           <h1 className="reise-hero-title">
-            {data.bedrift ? `${data.bedrift} på Finse` : 'Deres opphold på Finse 1222'}
+            {data.bedrift ? `${data.bedrift} på Finse 1222` : 'Deres opphold på Finse 1222'}
           </h1>
-          {(data.dato || data.varighet) && (
-            <p className="reise-hero-meta">
-              {[data.dato, data.varighet].filter(Boolean).join(' · ')}
-            </p>
-          )}
+          <p className="reise-hero-intro">
+            Dette er et forslag til hvordan turen til Finse 1222 kan se ut. Send det gjerne til de andre og hør hva de tenker.
+          </p>
+          <div className="reise-hero-btns no-print">
+            <button className="reise-btn reise-btn--dark" onClick={handleCopy}>
+              {copied ? '✓ Lenke kopiert!' : 'Del med kollegaer'}
+            </button>
+            <button className="reise-btn reise-btn--ghost" onClick={() => window.print()}>
+              Last ned som PDF
+            </button>
+          </div>
         </div>
       </section>
 
-      {/* ── Lead ── */}
-      <section className="reise-lead">
-        <p className="reise-lead-text">
-          Takk, {data.navn.split(' ')[0]}. Vi har mottatt forespørselen og tar kontakt innen én arbeidsdag for å sette opp det perfekte oppholdet på Finse 1222.
-        </p>
-      </section>
+      {/* ── Welcome + Facts ── */}
+      <section className="reise-welcome">
+        <div className="reise-welcome-text">
+          <p className="reise-welcome-body">
+            Finse 1222 ligger der jernbanen slutter og vidda begynner, Norges høyestliggende fjellstasjon, omgitt av Hardangerjøkulen og stille kilometer med is og lys. Her finnes ingen biler, ingen støy – bare det som virkelig betyr noe.
+          </p>
+          <p className="reise-welcome-body">
+            Dette er oppsummeringen av {data.bedrift ? `${data.bedrift}s` : 'deres'} tur til Finse 1222 – en reise dere vil tenke på lenge etter at dere er tilbake.
+          </p>
+        </div>
 
-      {/* ── Key details ── */}
-      {details.length > 0 && (
-        <section className="reise-details">
-          {details.map((d, i) => (
-            <div key={d.label} className="reise-detail">
-              <span className="reise-detail-label">{d.label}</span>
-              <span className="reise-detail-value">{d.value}</span>
-              {i < details.length - 1 && <span className="reise-detail-sep" aria-hidden="true" />}
-            </div>
-          ))}
-        </section>
-      )}
+        {details.length > 0 && (
+          <div className="reise-facts">
+            {details.map(d => (
+              <div key={d.label} className="reise-fact">
+                <span className="reise-fact-label">{d.label}</span>
+                <span className="reise-fact-value">{d.value}</span>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
 
       {/* ── Activities ── */}
       {aktiviteter.length > 0 && (
         <section className="reise-program">
-          <div className="reise-program-intro">
-            <span className="reise-eyebrow">Programmet</span>
-            <h2 className="reise-program-heading">Hva venter dere på Finse</h2>
+          <span className="reise-eyebrow">Planlagte opplevelser</span>
+          <div className="reise-act-editorial">
+            {aktiviteter.map(navn => {
+              const act = ACTIVITY_DATA[navn]
+              return (
+                <div key={navn} className="reise-act-card">
+                  <div className="reise-act-card-img">
+                    <img src={act?.bilde || '/assets/images/Finse_pakker00002.jpg'} alt={navn} />
+                  </div>
+                  <div className="reise-act-card-body">
+                    <h3 className="reise-act-title">{navn}</h3>
+                    {act?.desc && <p className="reise-act-desc">{act.desc}</p>}
+                  </div>
+                </div>
+              )
+            })}
           </div>
-
-          {aktiviteter.map((navn, i) => {
-            const act = ACTIVITY_DATA[navn]
-            const flip = i % 2 !== 0
-            return (
-              <article key={navn} className={`reise-act ${flip ? 'reise-act--flip' : ''}`}>
-                <div className="reise-act-img-wrap">
-                  <img
-                    src={act?.bilde || '/assets/images/Finse_pakker00002.jpg'}
-                    alt={navn}
-                    className="reise-act-img"
-                  />
-                </div>
-                <div className="reise-act-body">
-                  <span className="reise-act-num">{String(i + 1).padStart(2, '0')}</span>
-                  <h3 className="reise-act-title">{navn}</h3>
-                  {act?.desc && <p className="reise-act-desc">{act.desc}</p>}
-                </div>
-              </article>
-            )
-          })}
         </section>
       )}
 
@@ -159,24 +158,51 @@ export default function ReisePage() {
         </section>
       )}
 
-      {/* ── Share ── */}
-      <section className="reise-share no-print">
-        <div className="reise-share-inner">
+      {/* ── Pull quote ── */}
+      <section className="reise-quote">
+        <blockquote className="reise-quote-text">
+          «Seier venter den, som har alt i orden – hell kaller man det. Nederlag er en absolutt følge for den, som har forsømt å ta de nødvendige forholdsregler i tide – uhell kalles det.»
+        </blockquote>
+        <cite className="reise-quote-attr">— Fridtjof Nansen</cite>
+      </section>
+
+      {/* ── Room type ── */}
+      {data.romtype && (
+        <section className="reise-romtype">
+          <div className="reise-romtype-body">
+            <span className="reise-eyebrow">Romtyper</span>
+            <p className="reise-romtype-copy">
+              {data.romtype === 'Enkeltrom'
+                ? 'Alle får sitt eget rom. Hvert rom har eget bad, friskt sengetøy og utsikt mot Finse.'
+                : data.romtype === 'Dobbeltrom'
+                ? 'Det er lagt opp til dobbeltrom — to og to deler. Hvert rom har eget bad og utsikt mot Finse.'
+                : 'Det er lagt opp til en blanding av enkelt- og dobbeltrom. Hvert rom har eget bad og utsikt mot Finse.'}
+            </p>
+          </div>
+          <div className="reise-romtype-img-wrap">
+            <img src="/assets/images/finse1222__242.JPG" alt="Romtype" className="reise-romtype-img" />
+          </div>
+        </section>
+      )}
+
+      {/* ── Share card ── */}
+      <div className="reise-share-wrap no-print">
+        <section className="reise-share">
           <h2 className="reise-share-title">Del med teamet</h2>
           <p className="reise-share-desc">
             Send lenken til kollegaene dine — la dem se hva som venter på Finse.
           </p>
           <div className="reise-share-btns">
-            <button className="reise-btn reise-btn--primary" onClick={handleCopy}>
+            <button className="reise-btn reise-btn--light" onClick={handleCopy}>
               {copied ? '✓ Lenke kopiert!' : 'Kopier lenke'}
             </button>
-            <button className="reise-btn reise-btn--secondary" onClick={() => window.print()}>
+            <button className="reise-btn reise-btn--ghost" onClick={() => window.print()}>
               Last ned PDF
             </button>
           </div>
           <p className="reise-share-note">Vi svarer innen én arbeidsdag · Ingen binding</p>
-        </div>
-      </section>
+        </section>
+      </div>
 
       {/* ── Footer ── */}
       <footer className="reise-footer">
