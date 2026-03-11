@@ -191,10 +191,8 @@
 .konfig-label {
   display: block;
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   color: rgba(0, 0, 0, 0.38);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
   margin: 0 0 6px;
 }
 
@@ -273,6 +271,63 @@
   background: #775D40;
   border-color: #775D40;
   color: #ffffff;
+}
+
+/* ── Møterom card (step 4) ── */
+.konfig-moterom-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 20px 20px;
+  background: #F3EEE3;
+  border: 1.5px solid transparent;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 150ms ease;
+  color: rgba(0, 0, 0, 0.4);
+  text-align: left;
+}
+
+.konfig-moterom-card:hover {
+  background: #D9D0C3;
+}
+
+.konfig-moterom-card.selected {
+  border-color: #775D40;
+  background: #EDE5D8;
+  color: #775D40;
+}
+
+.konfig-moterom-card.selected .konfig-room-name {
+  color: #322A20;
+}
+
+.konfig-moterom-card-check {
+  margin-left: auto;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: #fff;
+  transition: background 150ms ease, border-color 150ms ease;
+  flex-shrink: 0;
+}
+
+.konfig-moterom-card.selected .konfig-moterom-card-check {
+  background: #775D40;
+  border-color: #775D40;
+}
+
+.konfig-moterom-varighet {
+  display: flex;
+  gap: 10px;
+  animation: fadeIn 180ms ease;
 }
 
 /* ── Møterom toggle ── */
@@ -376,6 +431,18 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.konfig-rooms--horizontal {
+  flex-direction: row;
+}
+
+.konfig-rooms--horizontal .konfig-room {
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 20px 16px;
 }
 
 .konfig-room {
@@ -490,22 +557,71 @@
   margin: 0;
 }
 
-/* ── Summary panel (step 5) ── */
+/* ── Summary panel (step 6) ── */
 .konfig-summary {
   position: absolute;
   inset: 0;
   background: #F3EEE3;
   border-radius: 12px;
-  padding: 44px 32px;
+  padding: 0;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
   animation: fadeIn 300ms ease;
+  scrollbar-width: thin;
+  scrollbar-color: #322A20 transparent;
+}
+
+.konfig-summary::-webkit-scrollbar {
+  width: 4px;
+}
+
+.konfig-summary::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.konfig-summary::-webkit-scrollbar-thumb {
+  background: #322A20;
+  border-radius: 2px;
 }
 
 @keyframes fadeIn {
   from { opacity: 0; }
   to   { opacity: 1; }
+}
+
+/* ── Summary hero image ── */
+.konfig-summary-hero {
+  position: relative;
+  width: 100%;
+  height: 130px;
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.konfig-summary-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.konfig-summary-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(30, 20, 10, 0.45);
+}
+
+.konfig-summary-hero-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 36px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
 }
 
 .konfig-summary-title {
@@ -514,6 +630,7 @@
   font-weight: 500;
   color: #1C1C1C;
   margin: 0 0 24px 0;
+  padding: 24px 32px 0;
 }
 
 .konfig-summary-list {
@@ -521,6 +638,7 @@
   flex-direction: column;
   gap: 16px;
   flex: 1;
+  padding: 0 32px;
 }
 
 .konfig-summary-row {
@@ -549,7 +667,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 12px 0;
+  padding: 12px 32px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.07);
 }
 
@@ -588,7 +706,7 @@
   font-size: 12px;
   color: rgba(0, 0, 0, 0.3);
   margin-top: auto;
-  padding-top: 20px;
+  padding: 20px 32px 32px;
   line-height: 1.5;
 }
 
@@ -783,6 +901,11 @@
   margin: 0;
 }
 
+/* Extra top spacing before section labels that follow content */
+div + .konfig-flex-label {
+  margin-top: 14px;
+}
+
 /* ── Duration buttons ── */
 .konfig-duration-row {
   display: flex;
@@ -821,6 +944,56 @@
   background: #775D40;
   border-color: #775D40;
   color: #fff;
+}
+
+/* ── Week-part toggles (step 2 flexible) ── */
+.konfig-ukedel-row {
+  display: flex;
+  gap: 10px;
+}
+
+.konfig-ukedel-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.55);
+  background: #F3EEE3;
+  border: 1.5px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.konfig-ukedel-btn:hover {
+  background: #D9D0C3;
+}
+
+.konfig-ukedel-btn.selected {
+  border-color: #775D40;
+  background: #EDE5D8;
+  color: #322A20;
+}
+
+.konfig-ukedel-check {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #fff;
+  transition: background 150ms ease, border-color 150ms ease;
+  flex-shrink: 0;
+}
+
+.konfig-ukedel-btn.selected .konfig-ukedel-check {
+  background: #775D40;
+  border-color: #775D40;
 }
 
 /* ── Month carousel ── */
@@ -910,9 +1083,9 @@
   color: #1C1C1C;
 }
 
-.konfig-month-arrow.hidden {
-  opacity: 0;
-  pointer-events: none;
+.konfig-month-arrow.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
 }
 
 /* ── Activity scroll list (step 5) ── */

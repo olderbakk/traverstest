@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import './configurator.css'
 
 const STEP_IMAGES = [
@@ -62,6 +63,8 @@ export default function Configurator() {
     datoTil: '',
     fleksibeltManed: '',
     fleksibeltNetter: '',
+    fleksibeltUkeDel: [] as string[],
+    moteromVarighet: 'Hel dag',
     antall: '',
     romtype: '',
     dagAktiviteter: [] as string[],
@@ -180,7 +183,7 @@ export default function Configurator() {
         <div className="konfig-body">
           <div className="konfig-left">
             <div className="konfig-segments">
-              {[1, 2, 3, 4, 5].map(i => (
+              {[1, 2, 3, 4, 5, 6].map(i => (
                 <div key={i} className={`konfig-seg ${i <= step ? 'filled' : ''}`} />
               ))}
             </div>
@@ -311,7 +314,7 @@ export default function Configurator() {
                     <>
                       <p className="konfig-flex-label">Hvor lenge ønsker dere å bli?</p>
                       <div className="konfig-duration-row">
-                        {['1 natt', '2-3 netter', '3-4 netter', 'Midtuke', 'Helg'].map(opt => (
+                        {['1 natt', '2-3 netter', '4-5 netter', 'En uke', 'Over en uke'].map(opt => (
                           <button
                             key={opt}
                             className={`konfig-duration-btn ${form.fleksibeltNetter === opt ? 'selected' : ''}`}
@@ -325,10 +328,11 @@ export default function Configurator() {
                       <p className="konfig-flex-label">Dra når som helst</p>
                       <div className="konfig-month-row">
                         <button
-                          className={`konfig-month-arrow ${monthOffset === 0 ? 'hidden' : ''}`}
+                          className={`konfig-month-arrow ${monthOffset === 0 ? 'disabled' : ''}`}
                           onClick={() => setMonthOffset(o => Math.max(0, o - 1))}
+                          disabled={monthOffset === 0}
                           aria-label="Forrige måneder"
-                        >←</button>
+                        ><ChevronLeft size={18} /></button>
 
                         <div className="konfig-month-viewport">
                           <div
@@ -355,10 +359,33 @@ export default function Configurator() {
                         </div>
 
                         <button
-                          className={`konfig-month-arrow ${monthOffset >= monthMax ? 'hidden' : ''}`}
+                          className={`konfig-month-arrow ${monthOffset >= monthMax ? 'disabled' : ''}`}
                           onClick={() => setMonthOffset(o => Math.min(monthMax, o + 1))}
+                          disabled={monthOffset >= monthMax}
                           aria-label="Neste måneder"
-                        >→</button>
+                        ><ChevronRight size={18} /></button>
+                      </div>
+
+                      <p className="konfig-flex-label">Når i uken kommer dere?</p>
+                      <div className="konfig-ukedel-row">
+                        {['Midt i uken', 'Helg'].map(opt => {
+                          const active = form.fleksibeltUkeDel.includes(opt)
+                          return (
+                            <button
+                              key={opt}
+                              className={`konfig-ukedel-btn ${active ? 'selected' : ''}`}
+                              onClick={() => setForm(p => ({
+                                ...p,
+                                fleksibeltUkeDel: active
+                                  ? p.fleksibeltUkeDel.filter(v => v !== opt)
+                                  : [...p.fleksibeltUkeDel, opt],
+                              }))}
+                            >
+                              <span className="konfig-ukedel-check">{active ? '✓' : ''}</span>
+                              {opt}
+                            </button>
+                          )
+                        })}
                       </div>
                     </>
                   )}
@@ -370,7 +397,7 @@ export default function Configurator() {
               {step === 3 && (
                 <>
                   <h1 className="konfig-title">Hvor mange kommer?</h1>
-                  <label className="konfig-label">ANTALL GJESTER</label>
+                  <label className="konfig-label">Antall gjester</label>
                   <div className="konfig-pills konfig-pills--3col">
                     {['1–4', '5–15', '15–30', '30–60', '60–110', 'Over 110'].map(opt => (
                       <button
@@ -382,23 +409,16 @@ export default function Configurator() {
                       </button>
                     ))}
                   </div>
-
-                  <label className="konfig-label">MØTEROM</label>
-                  <button
-                    className={`konfig-moterom-toggle ${form.moterom ? 'active' : ''}`}
-                    onClick={() => set('moterom', !form.moterom)}
-                  >
-                    {form.moterom ? '✓ Møterom lagt til' : '+ Legg til møterom'}
-                  </button>
-
                 </>
               )}
 
-              {/* ── Step 4: Romtype ── */}
+              {/* ── Step 4: Romtype + Møterom ── */}
               {step === 4 && (
                 <>
                   <h1 className="konfig-title">Hvilke romtype ønsker dere?</h1>
-                  <div className="konfig-rooms">
+
+                  <label className="konfig-label">Soverom</label>
+                  <div className="konfig-rooms konfig-rooms--horizontal">
                     <button
                       className={`konfig-room ${form.romtype === 'Enkeltrom' ? 'selected' : ''}`}
                       onClick={() => set('romtype', 'Enkeltrom')}
@@ -427,6 +447,32 @@ export default function Configurator() {
                       <span className="konfig-room-name">Enkeltrom og dobbeltrom</span>
                     </button>
                   </div>
+
+                  <label className="konfig-label">Møterom</label>
+                  <button
+                    className={`konfig-moterom-card ${form.moterom ? 'selected' : ''}`}
+                    onClick={() => set('moterom', !form.moterom)}
+                  >
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="3" y="4" width="18" height="14" rx="2" /><path d="M8 20h8" /><path d="M12 18v2" />
+                    </svg>
+                    <span className="konfig-room-name">Trenger dere møterom?</span>
+                    <span className="konfig-moterom-card-check">{form.moterom ? '✓' : ''}</span>
+                  </button>
+
+                  {form.moterom && (
+                    <div className="konfig-moterom-varighet">
+                      {['Hel dag', 'Halv dag'].map(opt => (
+                        <button
+                          key={opt}
+                          className={`konfig-duration-btn ${form.moteromVarighet === opt ? 'selected' : ''}`}
+                          onClick={() => set('moteromVarighet', opt)}
+                        >
+                          {opt}
+                        </button>
+                      ))}
+                    </div>
+                  )}
 
                 </>
               )}
@@ -473,19 +519,19 @@ export default function Configurator() {
                   <h1 className="konfig-title">La oss ta kontakt</h1>
                   <div className="konfig-form-grid">
                     <div className="konfig-field">
-                      <label className="konfig-label">NAVN</label>
+                      <label className="konfig-label">Navn</label>
                       <input type="text" className="konfig-input" placeholder="Ditt fulle navn" value={form.navn} onChange={e => set('navn', e.target.value)} />
                     </div>
                     <div className="konfig-field">
-                      <label className="konfig-label">BEDRIFT</label>
+                      <label className="konfig-label">Bedrift</label>
                       <input type="text" className="konfig-input" placeholder="Bedriftsnavn" value={form.bedrift} onChange={e => set('bedrift', e.target.value)} />
                     </div>
                     <div className="konfig-field">
-                      <label className="konfig-label">E-POST</label>
+                      <label className="konfig-label">E-post</label>
                       <input type="email" className="konfig-input" placeholder="din@epost.no" value={form.epost} onChange={e => set('epost', e.target.value)} />
                     </div>
                     <div className="konfig-field">
-                      <label className="konfig-label">TELEFON</label>
+                      <label className="konfig-label">Telefon</label>
                       <input type="tel" className="konfig-input" placeholder="+47" value={form.telefon} onChange={e => set('telefon', e.target.value)} />
                     </div>
                   </div>
@@ -522,6 +568,11 @@ export default function Configurator() {
               ))}
               {step === 6 && (
                 <div className="konfig-summary">
+                  <div className="konfig-summary-hero">
+                    <img src="/assets/images/Finse_configurator_background.jpg" alt="" className="konfig-summary-hero-img" />
+                    <div className="konfig-summary-hero-overlay" />
+                    <img src="/assets/logo/logo.png" alt="Hotel Finse 1222" className="konfig-summary-hero-logo" />
+                  </div>
                   <h3 className="konfig-summary-title">Oppsummering</h3>
                   <div className="konfig-summary-list">
                     {[
