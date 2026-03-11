@@ -13,18 +13,21 @@ const STEP_IMAGES = [
 ]
 
 const DAG_AKTIVITETER = [
-  { navn: 'Guidet tur på vidda',    bilde: '/assets/images/Finse_pakker00002.jpg' },
-  { navn: 'Skitur',                 bilde: '/assets/images/Finse_pakker00003.jpg' },
-  { navn: 'Sykling på Rallarvegen', bilde: '/assets/images/Finse_pakker00004.jpg' },
-  { navn: 'Breføring',              bilde: '/assets/images/Finse_pakker00005.jpg' },
+  { navn: 'Guidet tur på vidda',    bilde: '/assets/images/Finse_pakker00002.jpg', beskrivelse: 'Utforsk Hardangervidda med lokal guide. Hotellet inkluderer guide, kart og termos-lunsj underveis. En opplevelse som gir perspektiv – på naturen og på hverandre.' },
+  { navn: 'Skitur',                 bilde: '/assets/images/Finse_pakker00003.jpg', beskrivelse: 'Løypene starter rett utenfor døren. Hotellet låner ut ski og staver, og pakker sekken for dere om dere ønsker det. Ingen logistikk – bare frisk luft fra første steg.' },
+  { navn: 'Sykling på Rallarvegen', bilde: '/assets/images/Finse_pakker00004.jpg', beskrivelse: 'En ikonisk rute med dramatisk fjelllandskap. Hotellet ordner sykkel, hjelm og ruteplanlegging tilpasset gruppen. Mestring og snakkestoff garantert.' },
+  { navn: 'Breføring',              bilde: '/assets/images/Finse_pakker00005.jpg', beskrivelse: 'Gå på Hardangerjøkulen med erfarne guidere. Hotellet inkluderer guide, brodder og sikringsutstyr. En aktivitet som løfter turen fra hyggelig til uforglemmelig.' },
 ]
 
 const KVELD_AKTIVITETER = [
-  { navn: 'Astrokveld',              bilde: '/assets/images/Finse_pakker00007.jpg' },
-  { navn: 'Vinsmaking',              bilde: '/assets/images/Finse_pakker00008.jpg' },
-  { navn: 'Historiestund ved peisen',bilde: '/assets/images/Finse_pakker00009.jpg' },
-  { navn: 'Stjernetitting',          bilde: '/assets/images/Finse_pakker00010.jpg' },
-  { navn: 'Quiz om Finse',           bilde: '/assets/images/Finse_pakker00002.jpg' },
+  { navn: 'Astrokveld',    bilde: '/assets/images/Finse_pakker00007.jpg', beskrivelse: 'Stjernehimmel langt fra bylys. Hotellet serverer varm drikke og stiller med kikkert og stjernekart. Et naturlig rom for gode samtaler.' },
+  { navn: 'Historiestund', bilde: '/assets/images/Finse_pakker00009.jpg', beskrivelse: 'Finses historie – fra polfarere til filminnspillinger – fortalt rundt bålet. Hotellet arrangerer guidet fortelling med noe varmt å drikke. Gir reisen et felles ankerpunkt.' },
+  { navn: 'Vinsmaking',    bilde: '/assets/images/Finse_pakker00008.jpg', beskrivelse: 'Kurerte viner med historiene bak glasset, ledet av hotellets personale. Inkluderer smaksprøver og småretter. En avslappet avslutning på dagen.' },
+]
+
+const AKTIVITETER = [
+  ...DAG_AKTIVITETER.map(a => ({ ...a, type: 'dag' as const })),
+  ...KVELD_AKTIVITETER.map(a => ({ ...a, type: 'kveld' as const })),
 ]
 
 const MONTHS = [
@@ -105,6 +108,14 @@ export default function Configurator() {
         : [...p.kveldAktiviteter, navn],
     }))
   }
+
+  const toggleAktivitet = (navn: string, type: 'dag' | 'kveld') => {
+    if (type === 'dag') toggleDag(navn)
+    else toggleKveld(navn)
+  }
+
+  const isAktivitetSelected = (navn: string, type: 'dag' | 'kveld') =>
+    type === 'dag' ? form.dagAktiviteter.includes(navn) : form.kveldAktiviteter.includes(navn)
 
   // ── Calendar helpers ──
   const today = now.toISOString().split('T')[0]
@@ -480,34 +491,25 @@ export default function Configurator() {
               {/* ── Step 5: Aktiviteter ── */}
               {step === 5 && (
                 <>
-                  <h1 className="konfig-title">Hva vil dere oppleve?</h1>
+                  <h1 className="konfig-title">Hva ønsker dere å oppleve?</h1>
 
-                  <div className="konfig-activity-scroll">
-                    <p className="konfig-activity-section">På dagtid</p>
-                    {DAG_AKTIVITETER.map(({ navn, bilde }) => (
-                      <button
-                        key={navn}
-                        className={`konfig-activity-row ${form.dagAktiviteter.includes(navn) ? 'selected' : ''}`}
-                        onClick={() => toggleDag(navn)}
-                      >
-                        <img src={bilde} alt={navn} className="konfig-activity-thumb" />
-                        <span className="konfig-activity-row-name">{navn}</span>
-                        <span className="konfig-activity-row-check">{form.dagAktiviteter.includes(navn) ? '✓' : ''}</span>
-                      </button>
-                    ))}
-
-                    <p className="konfig-activity-section">På kvelden</p>
-                    {KVELD_AKTIVITETER.map(({ navn, bilde }) => (
-                      <button
-                        key={navn}
-                        className={`konfig-activity-row ${form.kveldAktiviteter.includes(navn) ? 'selected' : ''}`}
-                        onClick={() => toggleKveld(navn)}
-                      >
-                        <img src={bilde} alt={navn} className="konfig-activity-thumb" />
-                        <span className="konfig-activity-row-name">{navn}</span>
-                        <span className="konfig-activity-row-check">{form.kveldAktiviteter.includes(navn) ? '✓' : ''}</span>
-                      </button>
-                    ))}
+                  <div className="konfig-activity-grid">
+                    {AKTIVITETER.map(({ navn, bilde, beskrivelse, type }) => {
+                      const selected = isAktivitetSelected(navn, type)
+                      return (
+                        <button
+                          key={navn}
+                          className={`konfig-act-card ${selected ? 'selected' : ''}`}
+                          onClick={() => toggleAktivitet(navn, type)}
+                        >
+                          <img src={bilde} alt={navn} className="konfig-act-card-img" />
+                          <div className="konfig-act-card-body">
+                            <p className="konfig-act-card-title">{navn}</p>
+                            <p className="konfig-act-card-desc">{beskrivelse}</p>
+                          </div>
+                        </button>
+                      )
+                    })}
                   </div>
 
                 </>

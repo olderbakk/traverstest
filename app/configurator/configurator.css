@@ -1088,103 +1088,81 @@ div + .konfig-flex-label {
   cursor: not-allowed;
 }
 
-/* ── Activity scroll list (step 5) ── */
-.konfig-activity-scroll {
+/* ── Activity card grid (step 5) ── */
+.konfig-activity-grid {
   flex: 1;
   overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding-right: 6px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
   min-height: 0;
+  padding-right: 4px;
   scrollbar-width: thin;
   scrollbar-color: rgba(0,0,0,0.12) transparent;
 }
 
-.konfig-activity-scroll::-webkit-scrollbar {
+.konfig-activity-grid::-webkit-scrollbar {
   width: 4px;
 }
 
-.konfig-activity-scroll::-webkit-scrollbar-thumb {
+.konfig-activity-grid::-webkit-scrollbar-thumb {
   background: rgba(0,0,0,0.12);
   border-radius: 2px;
 }
 
-.konfig-activity-section {
-  font-family: var(--font-sans);
-  font-size: 11px;
-  color: rgba(0,0,0,0.35);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin: 8px 0 2px;
-}
-
-.konfig-activity-section:first-child {
-  margin-top: 0;
-}
-
-.konfig-activity-row {
+.konfig-act-card {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  padding: 10px 12px 10px 10px;
+  flex-direction: row;
   background: #F3EEE3;
   border: 1.5px solid transparent;
-  border-radius: 10px;
+  border-radius: 12px;
+  overflow: hidden;
   cursor: pointer;
-  transition: background 150ms ease, border-color 150ms ease;
   text-align: left;
+  transition: border-color 150ms ease, background 150ms ease;
 }
 
-.konfig-activity-row:hover {
-  background: #D9D0C3;
+.konfig-act-card:hover {
+  background: #EDE5D8;
 }
 
-.konfig-activity-row.selected {
+.konfig-act-card.selected {
   border-color: #775D40;
   background: #EDE5D8;
 }
 
-.konfig-activity-thumb {
-  flex: 0 0 52px;
-  width: 52px;
-  height: 52px;
+.konfig-act-card-img {
+  flex: 0 0 90px;
+  width: 90px;
   object-fit: cover;
-  border-radius: 6px;
   display: block;
+  align-self: stretch;
 }
 
-.konfig-activity-row-name {
+.konfig-act-card-body {
   flex: 1;
-  font-family: var(--font-sans);
-  font-size: 13px;
-  font-weight: 500;
-  color: rgba(0,0,0,0.7);
-}
-
-.konfig-activity-row.selected .konfig-activity-row-name {
-  color: #322A20;
-}
-
-.konfig-activity-row-check {
-  flex: 0 0 20px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: transparent;
-  border: 1.5px solid rgba(0,0,0,0.2);
-  color: #fff;
-  font-size: 11px;
+  padding: 12px 10px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 150ms ease, border-color 150ms ease;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
 }
 
-.konfig-activity-row.selected .konfig-activity-row-check {
-  background: #775D40;
-  border-color: #775D40;
+.konfig-act-card-title {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #322A20;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.konfig-act-card-desc {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  color: rgba(0,0,0,0.45);
+  margin: 0;
+  line-height: 1.5;
 }
 
 /* ── Responsive: tablet ── */

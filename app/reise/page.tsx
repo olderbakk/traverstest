@@ -8,12 +8,9 @@ const ACTIVITY_IMAGES: Record<string, string> = {
   'Skitur':                 '/assets/images/Finse_pakker00003.jpg',
   'Sykling på Rallarvegen': '/assets/images/Finse_pakker00004.jpg',
   'Breføring':              '/assets/images/Finse_pakker00005.jpg',
-  'Bare opphold':           '/assets/images/Finse_pakker00006.jpg',
   'Astrokveld':             '/assets/images/Finse_pakker00007.jpg',
   'Vinsmaking':             '/assets/images/Finse_pakker00008.jpg',
-  'Historiestund ved peisen':'/assets/images/Finse_pakker00009.jpg',
-  'Stjernetitting':         '/assets/images/Finse_pakker00010.jpg',
-  'Quiz om Finse':          '/assets/images/Finse_pakker00002.jpg',
+  'Historiestund':          '/assets/images/Finse_pakker00009.jpg',
 }
 
 interface TripData {
