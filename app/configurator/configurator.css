@@ -218,7 +218,7 @@
   font-family: var(--font-sans);
   font-size: 13px;
   color: rgba(0, 0, 0, 0.55);
-  background: #F2F0EC;
+  background: #F3EEE3;
   border: 1.5px solid transparent;
   border-radius: 8px;
   cursor: pointer;
@@ -228,12 +228,12 @@
 }
 
 .konfig-pill:hover {
-  background: #E8E5DF;
+  background: #D9D0C3;
 }
 
 .konfig-pill.selected {
-  background: #8C6D4F;
-  border-color: #8C6D4F;
+  background: #775D40;
+  border-color: #775D40;
   color: #ffffff;
 }
 
@@ -254,7 +254,7 @@
   font-family: var(--font-sans);
   font-size: 14px;
   color: rgba(0, 0, 0, 0.55);
-  background: #F2F0EC;
+  background: #F3EEE3;
   border: 1.5px solid transparent;
   border-radius: 12px;
   cursor: pointer;
@@ -262,12 +262,12 @@
 }
 
 .konfig-block:hover {
-  background: #E8E5DF;
+  background: #D9D0C3;
 }
 
 .konfig-block.selected {
-  background: #8C6D4F;
-  border-color: #8C6D4F;
+  background: #775D40;
+  border-color: #775D40;
   color: #ffffff;
 }
 
@@ -291,8 +291,8 @@
 
 .konfig-moterom-toggle.active {
   border-style: solid;
-  border-color: #8C6D4F;
-  color: #7A5C40;
+  border-color: #775D40;
+  color: #775D40;
 }
 
 /* ── Input fields ── */
@@ -319,7 +319,7 @@
 }
 
 .konfig-input:focus {
-  border-color: #8C6D4F;
+  border-color: #775D40;
 }
 
 .konfig-select {
@@ -341,7 +341,7 @@
 }
 
 .konfig-select:focus {
-  border-color: #8C6D4F;
+  border-color: #775D40;
 }
 
 .konfig-select option {
@@ -383,7 +383,7 @@
   min-height: 90px;
   max-height: 110px;
   padding: 14px;
-  background: #F2F0EC;
+  background: #F3EEE3;
   border: 1.5px solid transparent;
   border-radius: 14px;
   cursor: pointer;
@@ -392,13 +392,13 @@
 }
 
 .konfig-room:hover {
-  background: #E8E5DF;
+  background: #D9D0C3;
 }
 
 .konfig-room.selected {
-  border-color: #8C6D4F;
+  border-color: #775D40;
   background: #EDE5D8;
-  color: #7A5C40;
+  color: #775D40;
 }
 
 .konfig-room-name {
@@ -472,7 +472,7 @@
   font-size: 14px;
   font-weight: 500;
   color: #fff;
-  background: #8C6D4F;
+  background: #322A20;
   border: none;
   border-radius: 12px;
   padding: 14px 28px;
@@ -481,7 +481,7 @@
 }
 
 .konfig-submit:hover:not(:disabled) {
-  background: #7A5C40;
+  background: #4a3d2e;
 }
 
 .konfig-submit:disabled {
@@ -501,7 +501,7 @@
 .konfig-summary {
   position: absolute;
   inset: 0;
-  background: #F7F5F1;
+  background: #F3EEE3;
   border-radius: 12px;
   padding: 44px 32px;
   display: flex;
@@ -550,6 +550,44 @@
   font-family: var(--font-sans);
   font-size: 14px;
   color: rgba(0, 0, 0, 0.75);
+}
+
+.konfig-summary-activities {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.konfig-summary-activity-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.konfig-summary-activity-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 56px;
+}
+
+.konfig-summary-activity-item img {
+  width: 56px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.konfig-summary-activity-item span {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  color: rgba(0,0,0,0.5);
+  text-align: center;
+  line-height: 1.3;
 }
 
 .konfig-summary-note {
@@ -701,7 +739,7 @@
 
 .konfig-cal-day.is-start,
 .konfig-cal-day.is-end {
-  background: #8C6D4F;
+  background: #775D40;
   color: #fff;
   font-weight: 600;
   border-radius: 6px;
@@ -738,7 +776,7 @@
 .konfig-cal-confirmed em {
   font-style: normal;
   font-size: 12px;
-  color: #7A5C40;
+  color: #775D40;
   background: rgba(140, 109, 79, 0.12);
   border-radius: 20px;
   padding: 2px 10px;
@@ -775,7 +813,7 @@
   font-family: var(--font-sans);
   font-size: 13px;
   color: rgba(0, 0, 0, 0.55);
-  background: #F2F0EC;
+  background: #F3EEE3;
   border: 1.5px solid transparent;
   border-radius: 10px;
   cursor: pointer;
@@ -784,12 +822,12 @@
 }
 
 .konfig-duration-btn:hover {
-  background: #E8E5DF;
+  background: #D9D0C3;
 }
 
 .konfig-duration-btn.selected {
-  background: #8C6D4F;
-  border-color: #8C6D4F;
+  background: #775D40;
+  border-color: #775D40;
   color: #fff;
 }
 
@@ -803,7 +841,7 @@
 .konfig-month-viewport {
   flex: 1;
   overflow: hidden;
-  width: calc(4 * 96px + 3 * 8px);
+  min-width: 0;
 }
 
 .konfig-month-track {
@@ -813,14 +851,14 @@
 }
 
 .konfig-month-card {
-  flex: 0 0 96px;
+  flex: 0 0 81px;
   height: 96px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 5px;
-  background: #F2F0EC;
+  background: #F3EEE3;
   border: 1.5px solid transparent;
   border-radius: 12px;
   cursor: pointer;
@@ -829,14 +867,14 @@
 }
 
 .konfig-month-card:hover {
-  background: #E8E5DF;
+  background: #D9D0C3;
   color: rgba(0, 0, 0, 0.65);
 }
 
 .konfig-month-card.selected {
-  border-color: #8C6D4F;
+  border-color: #775D40;
   background: #EDE5D8;
-  color: #7A5C40;
+  color: #775D40;
 }
 
 .konfig-month-name {
@@ -885,77 +923,103 @@
   pointer-events: none;
 }
 
-/* ── Activity cards (step 4) ── */
-.konfig-activities {
+/* ── Activity scroll list (step 5) ── */
+.konfig-activity-scroll {
+  flex: 1;
+  overflow-y: auto;
   display: flex;
-  gap: 10px;
-  overflow-x: auto;
-  padding-bottom: 6px;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
+  flex-direction: column;
+  gap: 6px;
+  padding-right: 6px;
+  min-height: 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.12) transparent;
 }
 
-.konfig-activities::-webkit-scrollbar {
-  display: none;
+.konfig-activity-scroll::-webkit-scrollbar {
+  width: 4px;
 }
 
-.konfig-activity-card {
-  position: relative;
-  flex: 0 0 120px;
-  height: 130px;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 2px solid transparent;
-  cursor: pointer;
-  transition: border-color 150ms ease, transform 150ms ease;
-  background: #F2F0EC;
-  padding: 0;
+.konfig-activity-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.12);
+  border-radius: 2px;
 }
 
-.konfig-activity-card:hover {
-  border-color: rgba(0, 0, 0, 0.15);
-  transform: translateY(-2px);
-}
-
-.konfig-activity-card.selected {
-  border-color: #8C6D4F;
-}
-
-.konfig-activity-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.konfig-activity-name {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 20px 8px 8px;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.65));
+.konfig-activity-section {
   font-family: var(--font-sans);
   font-size: 11px;
-  font-weight: 500;
-  color: #fff;
-  line-height: 1.3;
+  color: rgba(0,0,0,0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 8px 0 2px;
+}
+
+.konfig-activity-section:first-child {
+  margin-top: 0;
+}
+
+.konfig-activity-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 6px 10px 6px 6px;
+  background: #F3EEE3;
+  border: 1.5px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 150ms ease, border-color 150ms ease;
   text-align: left;
 }
 
-.konfig-activity-check {
-  position: absolute;
-  top: 6px;
-  right: 6px;
+.konfig-activity-row:hover {
+  background: #D9D0C3;
+}
+
+.konfig-activity-row.selected {
+  border-color: #775D40;
+  background: #EDE5D8;
+}
+
+.konfig-activity-thumb {
+  flex: 0 0 52px;
+  width: 52px;
+  height: 52px;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+}
+
+.konfig-activity-row-name {
+  flex: 1;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(0,0,0,0.7);
+}
+
+.konfig-activity-row.selected .konfig-activity-row-name {
+  color: #322A20;
+}
+
+.konfig-activity-row-check {
+  flex: 0 0 20px;
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: #8C6D4F;
+  background: transparent;
+  border: 1.5px solid rgba(0,0,0,0.2);
   color: #fff;
   font-size: 11px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background 150ms ease, border-color 150ms ease;
+}
+
+.konfig-activity-row.selected .konfig-activity-row-check {
+  background: #775D40;
+  border-color: #775D40;
 }
 
 /* ── Responsive: tablet ── */

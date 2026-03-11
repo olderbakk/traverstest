@@ -1,22 +1,29 @@
 /* ========================================
-   Reise – "Din reise" editorial page
+   Reise – Booking confirmation (light/warm)
    ======================================== */
 
 .reise-page {
   min-height: 100vh;
-  background: #0f0f0f;
-  color: #fff;
+  background: #F8F4E8;
+  color: #1C1C1C;
 }
 
 /* ── Hero ── */
 .reise-hero {
   position: relative;
   width: 100%;
-  height: 420px;
+  height: 70vh;
+  min-height: 460px;
+  max-height: 680px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .reise-hero-img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -27,124 +34,195 @@
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.15) 0%,
-    rgba(15, 15, 15, 0.6) 70%,
-    #0f0f0f 100%
+    rgba(0,0,0,0.25) 0%,
+    rgba(0,0,0,0.1) 40%,
+    rgba(15,10,5,0.72) 100%
   );
 }
 
-.reise-hero-content {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.reise-hero-top {
+  position: relative;
+  z-index: 1;
+  padding: 32px 56px;
 }
 
-.reise-logo {
-  font-family: var(--font-serif);
-  font-size: 18px;
-  font-weight: 400;
-  color: #fff;
-  letter-spacing: 0.35em;
-  text-transform: uppercase;
+.reise-logo-link {
+  display: inline-block;
+}
+
+.reise-logo-img {
+  height: 44px;
+  width: auto;
+  filter: brightness(0) invert(1);
   opacity: 0.9;
+}
+
+.reise-hero-bottom {
+  position: relative;
+  z-index: 1;
+  padding: 0 56px 56px;
+}
+
+.reise-hero-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  margin: 0 0 14px;
+}
+
+.reise-hero-heading {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin: 0;
+  max-width: 700px;
 }
 
 /* ── Content ── */
 .reise-content {
-  max-width: 720px;
+  max-width: 860px;
   margin: 0 auto;
-  padding: 0 40px 100px;
+  padding: 72px 56px 120px;
 }
 
-.reise-header {
-  margin-bottom: 64px;
+/* ── Intro ── */
+.reise-intro {
+  padding-bottom: 56px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  margin-bottom: 56px;
 }
 
-.reise-heading {
-  font-family: var(--font-serif);
-  font-size: 48px;
-  font-weight: 400;
-  color: #fff;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
+.reise-intro-text {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: rgba(0,0,0,0.65);
+  line-height: 1.6;
   margin: 0;
+  max-width: 560px;
 }
 
-.reise-bedrift {
+/* ── Sections ── */
+.reise-section {
+  margin-bottom: 56px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.reise-section:last-of-type {
+  border-bottom: none;
+}
+
+.reise-section-title {
   font-family: var(--font-sans);
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.4);
-  margin: 16px 0 0;
-  letter-spacing: 0.05em;
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(0,0,0,0.35);
   text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin: 0 0 28px;
 }
 
 /* ── Details grid ── */
-.reise-grid {
+.reise-details-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 0;
 }
 
-.reise-detail {
+.reise-detail-item {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 32px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 6px;
+  padding: 24px 24px 24px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
 }
 
-.reise-detail:nth-child(odd) {
-  padding-right: 40px;
-}
-
-.reise-detail:nth-child(even) {
-  padding-left: 40px;
-  border-left: 1px solid rgba(255, 255, 255, 0.08);
+.reise-detail-item:nth-child(3n) {
+  padding-right: 0;
 }
 
 .reise-detail-label {
   font-family: var(--font-sans);
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.35);
+  font-size: 10px;
+  color: rgba(0,0,0,0.35);
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
 }
 
 .reise-detail-value {
-  font-family: var(--font-serif);
-  font-size: 22px;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: #322A20;
   line-height: 1.3;
 }
 
-/* ── Merknad ── */
-.reise-merknad {
-  padding: 32px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+/* ── Activities ── */
+.reise-activities {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
 }
 
+.reise-activity-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reise-activity-img-wrap {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.reise-activity-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 400ms ease;
+}
+
+.reise-activity-card:hover .reise-activity-img {
+  transform: scale(1.04);
+}
+
+.reise-activity-name {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(0,0,0,0.7);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ── Merknad ── */
 .reise-merknad-text {
   font-family: var(--font-sans);
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.6);
-  line-height: 1.6;
-  margin: 8px 0 0;
+  font-size: 15px;
+  color: rgba(0,0,0,0.55);
+  line-height: 1.7;
+  margin: 0;
 }
 
 /* ── Actions ── */
 .reise-actions {
-  margin-top: 56px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 16px;
+  padding-top: 16px;
 }
 
-.reise-cta {
+.reise-cta-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -152,25 +230,36 @@
   font-size: 14px;
   font-weight: 500;
   color: #fff;
-  background: #5BB8C4;
+  background: #322A20;
   border: none;
-  border-radius: 12px;
-  padding: 14px 40px;
+  border-radius: 10px;
+  padding: 13px 36px;
   cursor: pointer;
   transition: background 150ms ease;
   text-decoration: none;
-  min-width: 220px;
 }
 
-.reise-cta:hover {
-  background: #4da8b4;
+.reise-cta-btn:hover {
+  background: #4a3d2e;
 }
 
 .reise-footer-note {
   font-family: var(--font-sans);
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.3);
+  font-size: 12px;
+  color: rgba(0,0,0,0.35);
   margin: 0;
+}
+
+.reise-new-link {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: rgba(0,0,0,0.4);
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.reise-new-link:hover {
+  color: rgba(0,0,0,0.7);
 }
 
 /* ── Empty state ── */
@@ -186,58 +275,60 @@
 }
 
 .reise-empty-title {
-  font-family: var(--font-serif);
-  font-size: 32px;
-  font-weight: 400;
-  color: #fff;
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 36px;
+  font-weight: 500;
+  color: #1C1C1C;
   margin: 0;
 }
 
 .reise-empty-text {
   font-family: var(--font-sans);
   font-size: 15px;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(0,0,0,0.45);
   margin: 0;
 }
 
 /* ── Mobile ── */
 @media (max-width: 768px) {
   .reise-hero {
-    height: 260px;
+    height: 55vh;
+    min-height: 360px;
+  }
+
+  .reise-hero-top,
+  .reise-hero-bottom {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .reise-hero-bottom {
+    padding-bottom: 36px;
   }
 
   .reise-content {
-    padding: 0 24px 80px;
+    padding: 48px 24px 80px;
   }
 
-  .reise-heading {
-    font-size: 32px;
+  .reise-details-grid {
+    grid-template-columns: 1fr 1fr;
   }
 
-  .reise-header {
-    margin-bottom: 40px;
-  }
-
-  .reise-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .reise-detail:nth-child(odd),
-  .reise-detail:nth-child(even) {
-    padding-left: 0;
-    padding-right: 0;
-    border-left: none;
-  }
-
-  .reise-detail-value {
-    font-size: 18px;
-  }
-
-  .reise-cta {
-    width: 100%;
+  .reise-activities {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
   }
 
   .reise-actions {
-    margin-top: 40px;
+    align-items: stretch;
+  }
+
+  .reise-cta-btn {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .reise-details-grid {
+    grid-template-columns: 1fr;
   }
 }

@@ -8,22 +8,22 @@ const STEP_IMAGES = [
   '/assets/images/finse1222__182.JPG',
   '/assets/images/finse1222__242.JPG',
   '/assets/images/oss.JPG',
+  '/assets/images/oss.JPG',
 ]
 
 const DAG_AKTIVITETER = [
-  'Guidet tur på vidda',
-  'Skitur',
-  'Sykling på Rallarvegen',
-  'Breføring',
-  'Bare opphold',
+  { navn: 'Guidet tur på vidda',    bilde: '/assets/images/Finse_pakker00002.jpg' },
+  { navn: 'Skitur',                 bilde: '/assets/images/Finse_pakker00003.jpg' },
+  { navn: 'Sykling på Rallarvegen', bilde: '/assets/images/Finse_pakker00004.jpg' },
+  { navn: 'Breføring',              bilde: '/assets/images/Finse_pakker00005.jpg' },
 ]
 
 const KVELD_AKTIVITETER = [
-  'Astrokveld',
-  'Vinsmaking',
-  'Historiestund ved peisen',
-  'Stjernetitting',
-  'Quiz om Finse',
+  { navn: 'Astrokveld',              bilde: '/assets/images/Finse_pakker00007.jpg' },
+  { navn: 'Vinsmaking',              bilde: '/assets/images/Finse_pakker00008.jpg' },
+  { navn: 'Historiestund ved peisen',bilde: '/assets/images/Finse_pakker00009.jpg' },
+  { navn: 'Stjernetitting',          bilde: '/assets/images/Finse_pakker00010.jpg' },
+  { navn: 'Quiz om Finse',           bilde: '/assets/images/Finse_pakker00002.jpg' },
 ]
 
 const MONTHS = [
@@ -45,8 +45,8 @@ export default function Configurator() {
   const [dir, setDir] = useState<1 | -1>(1)
 
   const [monthOffset, setMonthOffset] = useState(0)
-  const MONTH_SLOT = 104   // 96px card + 8px gap
-  const MONTH_VISIBLE = 4  // cards shown at once
+  const MONTH_SLOT = 89    // 81px card + 8px gap
+  const MONTH_VISIBLE = 5  // cards shown at once
 
   const now = new Date()
   const [calYear, setCalYear] = useState(now.getFullYear())
@@ -73,7 +73,7 @@ export default function Configurator() {
     merknad: '',
   })
 
-  const TOTAL = 5
+  const TOTAL = 6
 
   const goTo = (target: number) => {
     setDir(target > step ? 1 : -1)
@@ -85,28 +85,21 @@ export default function Configurator() {
   const set = (field: string, value: string | boolean) =>
     setForm(p => ({ ...p, [field]: value }))
 
-  const toggleDag = (val: string) => {
-    if (val === 'Bare opphold') {
-      setForm(p => ({
-        ...p,
-        dagAktiviteter: p.dagAktiviteter.includes(val) ? [] : [val],
-      }))
-    } else {
-      setForm(p => ({
-        ...p,
-        dagAktiviteter: p.dagAktiviteter.includes(val)
-          ? p.dagAktiviteter.filter(v => v !== val)
-          : [...p.dagAktiviteter.filter(v => v !== 'Bare opphold'), val],
-      }))
-    }
-  }
-
-  const toggleKveld = (val: string) => {
+  const toggleDag = (navn: string) => {
     setForm(p => ({
       ...p,
-      kveldAktiviteter: p.kveldAktiviteter.includes(val)
-        ? p.kveldAktiviteter.filter(v => v !== val)
-        : [...p.kveldAktiviteter, val],
+      dagAktiviteter: p.dagAktiviteter.includes(navn)
+        ? p.dagAktiviteter.filter(v => v !== navn)
+        : [...p.dagAktiviteter, navn],
+    }))
+  }
+
+  const toggleKveld = (navn: string) => {
+    setForm(p => ({
+      ...p,
+      kveldAktiviteter: p.kveldAktiviteter.includes(navn)
+        ? p.kveldAktiviteter.filter(v => v !== navn)
+        : [...p.kveldAktiviteter, navn],
     }))
   }
 
@@ -159,9 +152,17 @@ export default function Configurator() {
 
   const handleSubmit = () => {
     const id = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`
+    const dato = form.datoModus === 'datoer'
+      ? `${formatDate(form.datoFra)} → ${formatDate(form.datoTil)}`
+      : form.fleksibeltManed
+    const varighet = form.datoModus === 'datoer'
+      ? `${nights} ${nights === 1 ? 'natt' : 'netter'}`
+      : form.fleksibeltNetter
     const payload = {
       ...form,
       anledning: form.anledning === 'Annet' ? form.annetAnledning : form.anledning,
+      dato,
+      varighet,
       id,
       createdAt: new Date().toISOString(),
     }
@@ -390,7 +391,25 @@ export default function Configurator() {
                     ))}
                   </div>
 
-                  <label className="konfig-label">ROMTYPE</label>
+                  <label className="konfig-label">MØTEROM</label>
+                  <button
+                    className={`konfig-moterom-toggle ${form.moterom ? 'active' : ''}`}
+                    onClick={() => set('moterom', !form.moterom)}
+                  >
+                    {form.moterom ? '✓ Møterom lagt til' : '+ Legg til møterom'}
+                  </button>
+
+                  <div className="konfig-nav">
+                    <button className="konfig-back" onClick={prev}>Tilbake</button>
+                    {form.antall && <button className="konfig-next" onClick={next}>Neste</button>}
+                  </div>
+                </>
+              )}
+
+              {/* ── Step 4: Romtype ── */}
+              {step === 4 && (
+                <>
+                  <h1 className="konfig-title">Hvilke romtype ønsker dere?</h1>
                   <div className="konfig-rooms">
                     <button
                       className={`konfig-room ${form.romtype === 'Enkeltrom' ? 'selected' : ''}`}
@@ -412,58 +431,54 @@ export default function Configurator() {
                       <span className="konfig-room-name">Dobbeltrom</span>
                       <span className="konfig-room-price">Fra kr 1 490 / pers / natt</span>
                     </button>
+                    <button
+                      className={`konfig-room ${form.romtype === 'Begge deler' ? 'selected' : ''}`}
+                      onClick={() => set('romtype', 'Begge deler')}
+                    >
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M3 21V7a2 2 0 012-2h14a2 2 0 012 2v14" /><path d="M3 15h18" /><rect x="4" y="9" width="3" height="6" rx="1" /><rect x="10" y="9" width="3" height="6" rx="1" /><rect x="16" y="9" width="3" height="6" rx="1" />
+                      </svg>
+                      <span className="konfig-room-name">Begge deler</span>
+                      <span className="konfig-room-price">Vi finner den beste løsningen</span>
+                    </button>
                   </div>
-
-                  <label className="konfig-label">MØTEROM</label>
-                  <button
-                    className={`konfig-moterom-toggle ${form.moterom ? 'active' : ''}`}
-                    onClick={() => set('moterom', !form.moterom)}
-                  >
-                    {form.moterom ? '✓ Møterom lagt til' : '+ Legg til møterom'}
-                  </button>
 
                   <div className="konfig-nav">
                     <button className="konfig-back" onClick={prev}>Tilbake</button>
-                    {form.antall && <button className="konfig-next" onClick={next}>Neste</button>}
+                    {form.romtype && <button className="konfig-next" onClick={next}>Neste</button>}
                   </div>
                 </>
               )}
 
-              {/* ── Step 4: Aktiviteter ── */}
-              {step === 4 && (
+              {/* ── Step 5: Aktiviteter ── */}
+              {step === 5 && (
                 <>
                   <h1 className="konfig-title">Hva vil dere oppleve?</h1>
 
-                  <label className="konfig-label">PÅ DAGTID</label>
-                  <div className="konfig-activities">
-                    {DAG_AKTIVITETER.map(opt => (
+                  <div className="konfig-activity-scroll">
+                    <p className="konfig-activity-section">På dagtid</p>
+                    {DAG_AKTIVITETER.map(({ navn, bilde }) => (
                       <button
-                        key={opt}
-                        className={`konfig-activity-card ${form.dagAktiviteter.includes(opt) ? 'selected' : ''}`}
-                        onClick={() => toggleDag(opt)}
+                        key={navn}
+                        className={`konfig-activity-row ${form.dagAktiviteter.includes(navn) ? 'selected' : ''}`}
+                        onClick={() => toggleDag(navn)}
                       >
-                        <img src="/assets/images/oss.JPG" alt={opt} />
-                        <div className="konfig-activity-name">{opt}</div>
-                        {form.dagAktiviteter.includes(opt) && (
-                          <div className="konfig-activity-check">✓</div>
-                        )}
+                        <img src={bilde} alt={navn} className="konfig-activity-thumb" />
+                        <span className="konfig-activity-row-name">{navn}</span>
+                        <span className="konfig-activity-row-check">{form.dagAktiviteter.includes(navn) ? '✓' : ''}</span>
                       </button>
                     ))}
-                  </div>
 
-                  <label className="konfig-label">PÅ KVELDEN</label>
-                  <div className="konfig-activities">
-                    {KVELD_AKTIVITETER.map(opt => (
+                    <p className="konfig-activity-section">På kvelden</p>
+                    {KVELD_AKTIVITETER.map(({ navn, bilde }) => (
                       <button
-                        key={opt}
-                        className={`konfig-activity-card ${form.kveldAktiviteter.includes(opt) ? 'selected' : ''}`}
-                        onClick={() => toggleKveld(opt)}
+                        key={navn}
+                        className={`konfig-activity-row ${form.kveldAktiviteter.includes(navn) ? 'selected' : ''}`}
+                        onClick={() => toggleKveld(navn)}
                       >
-                        <img src="/assets/images/oss.JPG" alt={opt} />
-                        <div className="konfig-activity-name">{opt}</div>
-                        {form.kveldAktiviteter.includes(opt) && (
-                          <div className="konfig-activity-check">✓</div>
-                        )}
+                        <img src={bilde} alt={navn} className="konfig-activity-thumb" />
+                        <span className="konfig-activity-row-name">{navn}</span>
+                        <span className="konfig-activity-row-check">{form.kveldAktiviteter.includes(navn) ? '✓' : ''}</span>
                       </button>
                     ))}
                   </div>
@@ -475,8 +490,8 @@ export default function Configurator() {
                 </>
               )}
 
-              {/* ── Step 5: Kontakt ── */}
-              {step === 5 && (
+              {/* ── Step 6: Kontakt ── */}
+              {step === 6 && (
                 <>
                   <h1 className="konfig-title">La oss ta kontakt</h1>
                   <div className="konfig-form-grid">
@@ -516,23 +531,21 @@ export default function Configurator() {
           <div className="konfig-right">
             <div className="konfig-img-wrap">
               {STEP_IMAGES.map((src, i) => (
-                <img key={i} src={src} alt="" className={`konfig-img ${step === i + 1 && step < 5 ? 'visible' : ''}`} />
+                <img key={i} src={src} alt="" className={`konfig-img ${step === i + 1 && step < 6 ? 'visible' : ''}`} />
               ))}
-              {step === 5 && (
+              {step === 6 && (
                 <div className="konfig-summary">
                   <h3 className="konfig-summary-title">Oppsummering</h3>
                   <div className="konfig-summary-list">
                     {[
                       { label: 'Anledning', value: form.anledning === 'Annet' ? form.annetAnledning : form.anledning },
-                      { label: 'Møterom', value: form.moterom ? 'Ja' : '' },
                       { label: 'Ankomst', value: form.datoModus === 'datoer' ? formatDate(form.datoFra) : '' },
                       { label: 'Avreise', value: form.datoModus === 'datoer' ? formatDate(form.datoTil) : '' },
                       { label: 'Ønsket måned', value: form.datoModus === 'fleksibel' ? form.fleksibeltManed : '' },
                       { label: 'Varighet', value: form.datoModus === 'fleksibel' ? form.fleksibeltNetter : '' },
                       { label: 'Antall gjester', value: form.antall },
                       { label: 'Romtype', value: form.romtype },
-                      { label: 'Aktiviteter (dag)', value: form.dagAktiviteter.join(', ') },
-                      { label: 'Aktiviteter (kveld)', value: form.kveldAktiviteter.join(', ') },
+                      { label: 'Møterom', value: form.moterom ? 'Ja' : '' },
                     ].filter(item => item.value).map(item => (
                       <div key={item.label} className="konfig-summary-row">
                         <span className="konfig-summary-key">{item.label}</span>
@@ -540,6 +553,28 @@ export default function Configurator() {
                       </div>
                     ))}
                   </div>
+
+                  {(form.dagAktiviteter.length > 0 || form.kveldAktiviteter.length > 0) && (() => {
+                    const alleAktiviteter = [...DAG_AKTIVITETER, ...KVELD_AKTIVITETER]
+                    const valgte = [...form.dagAktiviteter, ...form.kveldAktiviteter]
+                    return (
+                      <div className="konfig-summary-activities">
+                        <span className="konfig-summary-key">Aktiviteter</span>
+                        <div className="konfig-summary-activity-grid">
+                          {valgte.map(navn => {
+                            const match = alleAktiviteter.find(a => a.navn === navn)
+                            return (
+                              <div key={navn} className="konfig-summary-activity-item">
+                                {match && <img src={match.bilde} alt={navn} />}
+                                <span>{navn}</span>
+                              </div>
+                            )
+                          })}
+                        </div>
+                      </div>
+                    )
+                  })()}
+
                   <p className="konfig-summary-note">
                     Navneliste og matintoleranser samler vi inn 3 uker før ankomst.
                   </p>
